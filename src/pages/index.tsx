@@ -1,3 +1,9 @@
+export type Post = {
+  userContent: string;
+  userName: string;
+  userPw: string;
+  userTitle: string;
+};
 import React, {
   useRef,
   useState,
@@ -20,7 +26,7 @@ import Image from "next/image";
 
 const Main = ({ userValues, userName, userPw, userTitle, userContent }) => {
   const [scrollY, setScrollY] = useState(0); //[nav] 색깔을 바꿔주는 state
-  const [postsList, setPostsList] = useState([]);
+  const [postsList, setPostsList] = useState<Post[]>([]);
 
   const focusTarget = useRef([]); //[nav] 해당 카테고리로 이동할때 사용
 
@@ -42,6 +48,7 @@ const Main = ({ userValues, userName, userPw, userTitle, userContent }) => {
 
   useLayoutEffect(() => {
     let data = JSON.parse(window.localStorage.getItem("userName"));
+    console.log({ data });
 
     setPostsList(data);
   }, []);

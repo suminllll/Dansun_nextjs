@@ -2,16 +2,17 @@ import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import { OneButton } from "./Button";
 import { useRouter } from "next/router";
+import { Post } from "../pages";
 // import Writing from '../pages/Writing';
 type Props = {
   isMobile: boolean;
-  posts: Object[];
+  posts: Post[];
   inputData: any;
 };
 const Qna = ({ posts, inputData, isMobile }: Props) => {
   const router = useRouter();
   const [searchValue, setSearchValue] = useState(""); //[QnA] 검색창에서 입력값을 받는 state
-  const [filterValue, setFilterValue] = useState(""); //[QnA] 유효성 검사가 완료된 값을 담음
+  const [filterValue, setFilterValue] = useState([]); //[QnA] 유효성 검사가 완료된 값을 담음
 
   //현재날짜 구함
   const now = new Date();
