@@ -2,9 +2,9 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import kakaoIcon from "../public/images/카카오톡.png";
+import kakaoIcon from "../public/images/카카오톡.png";
 import Image from "next/image";
-import { isMobile } from "react-device-detect";
+
 declare global {
   interface Window {
     kakao: any;
