@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-title-in-document-head */
 /* eslint-disable @next/next/no-sync-scripts */
 import Document, {
   Html,
@@ -38,6 +39,11 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <title>DansunDesign</title>
+          <script
+            type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=958e94cb44389e401dfb9507be374133"
+          ></script>
           <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="theme-color" content="#000000" />
@@ -62,11 +68,6 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&family=Work+Sans&display=swap"
             rel="stylesheet"
           />
-          <script
-            type="text/javascript"
-            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=958e94cb44389e401dfb9507be374133"
-          ></script>
-          <title>DansunDesign</title>
         </Head>
         <body>
           <Main />

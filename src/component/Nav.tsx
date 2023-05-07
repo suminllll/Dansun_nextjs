@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 
-export const MainNav = ({ scrollY, handleScroll, scrollTo }) => {
+export const MainNav = ({ scrollY, handleScroll, scrollTo, isMobile }) => {
   // 스크롤시 handleScroll를 호출해 색깔을 변경
   useEffect(() => {
     const watch = () => {
@@ -22,12 +22,11 @@ export const MainNav = ({ scrollY, handleScroll, scrollTo }) => {
 
   return (
     <>
-      <NavBox scrollY={scrollY}>
+      <NavBox scrollY={scrollY} isMobile={isMobile}>
         <>
-          <LogoTitle href="/">Design DanSun</LogoTitle>
+          <LogoTitle href="/">DanSun Interior</LogoTitle>
         </>
         <RightBox>
-          <About onClick={handleAbout}>ABOUT US</About>
           <Design name="design" onClick={scrollTo}>
             DESIGN
           </Design>
@@ -56,16 +55,21 @@ const Category = styled.button`
 
 //--------
 
-const NavBox = styled.nav`
+const NavBox = styled.nav<{ scrollY: any; isMobile: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: fixed;
   height: 70px;
-  width: 100%;
+  white-space: nowrap;
+  overflow: auto;
+  width: ${({ isMobile }) => (isMobile ? `430px` : `100%`)};
   z-index: 990;
   transition: 0.5s ease;
-
+  padding-left: 10px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   ${({ scrollY }) => {
     return scrollY > 690
       ? "background-color: #003300"
@@ -75,6 +79,8 @@ const NavBox = styled.nav`
 
 const LogoTitle = styled(Link)`
   padding-left: 20px;
+  margin-right: 40px;
+  text-shadow: #888886 1px 0 10px;
   font-size: 30px;
   color: white;
   font-family: "Dancing Script", cursive;

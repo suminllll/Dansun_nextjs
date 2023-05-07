@@ -13,10 +13,13 @@ import Qna from "../component/Qna";
 import { useRecoilState } from "recoil";
 import { writingInfo } from "../stores/info";
 import next from "next/types";
+import { isMobile } from "react-device-detect";
+import img from "../public/images/배경이미지.jpeg";
+import { StaticImageData } from "next/image";
+import Image from "next/image";
 
 const Main = ({ userValues, userName, userPw, userTitle, userContent }) => {
   const [scrollY, setScrollY] = useState(0); //[nav] 색깔을 바꿔주는 state
-
   const [postsList, setPostsList] = useState([]);
 
   const focusTarget = useRef([]); //[nav] 해당 카테고리로 이동할때 사용
@@ -39,7 +42,6 @@ const Main = ({ userValues, userName, userPw, userTitle, userContent }) => {
 
   useLayoutEffect(() => {
     let data = JSON.parse(window.localStorage.getItem("userName"));
-    console.log("main", data);
 
     setPostsList(data);
   }, []);
@@ -50,15 +52,19 @@ const Main = ({ userValues, userName, userPw, userTitle, userContent }) => {
         handleScroll={handleScroll}
         scrollY={scrollY}
         scrollTo={scrollTo}
+        isMobile={isMobile}
       />
-      <Explain>
-        <TextBox>
-          단 하나의 선으로 시작해,
-          <br />
-          의미있는 공간을 만듭니다.
-          <br />- 단선 인테리어
-        </TextBox>
-      </Explain>
+      <MainImgBox isMobile={isMobile}>
+        <Img src={img} alt="" isMobile={isMobile} />
+        <Explain isMobile={isMobile}>
+          <TextBox isMobile={isMobile}>
+            단 하나의 선으로 시작해,
+            <br />
+            의미있는 공간을 만듭니다.
+            <br />- 단선 인테리어
+          </TextBox>
+        </Explain>
+      </MainImgBox>
 
       <Title ref={(el) => (focusTarget.current[0] = el)}>DESIGN</Title>
       <Design />
@@ -66,35 +72,47 @@ const Main = ({ userValues, userName, userPw, userTitle, userContent }) => {
       <ContactTitle ref={(el) => (focusTarget.current[1] = el)}>
         CONTACT
       </ContactTitle>
-      <Contact />
+      <Contact isMobile={isMobile} />
 
       <Title ref={(el) => (focusTarget.current[2] = el)}>QnA</Title>
-      <Qna posts={postsList} inputData={undefined} />
+      <Qna posts={postsList} inputData={undefined} isMobile={isMobile} />
     </Article>
   );
 };
 
-const Article = styled.article`
-  background: url(../public/images/배경이미지.jpeg);
-  height: 100vh;
+const Article = styled.div`
+  height: 100%;
+  width: 100%;
   background-size: 100% 100%;
   background-repeat: no-repeat;
 `;
 
-const Explain = styled.main`
-  height: 100vh;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-color: rgba(40, 40, 40, 0.4);
+const MainImgBox = styled.div<{ isMobile: boolean }>`
+  height: ${({ isMobile }) => (isMobile ? `450px` : `700px`)};
+  width: 100%;
+  position: relative;
+`;
+
+const Img = styled(Image)<{ isMobile: boolean }>`
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: -1;
+`;
+
+const Explain = styled.div<{ isMobile: boolean }>`
+  height: 100%;
+  width: 100%;
   color: white;
+  position: absolute;
+  top: ${({ isMobile }) => (isMobile ? `300px` : `390px`)};
 `;
 
-const TextBox = styled.div`
+const TextBox = styled.div<{ isMobile: boolean }>`
   padding-left: 5%;
-  padding-top: 28%;
-  font-size: 60px;
   font-weight: lighter;
   letter-spacing: 2px;
+  font-size: ${({ isMobile }) => (isMobile ? `30px` : `60px`)};
 `;
 
 const Title = styled.div`

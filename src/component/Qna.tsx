@@ -3,8 +3,12 @@ import styled from "styled-components";
 import { OneButton } from "./Button";
 import { useRouter } from "next/router";
 // import Writing from '../pages/Writing';
-
-const Qna = ({ posts, inputData }) => {
+type Props = {
+  isMobile: boolean;
+  posts: Object[];
+  inputData: any;
+};
+const Qna = ({ posts, inputData, isMobile }: Props) => {
   const router = useRouter();
   const [searchValue, setSearchValue] = useState(""); //[QnA] 검색창에서 입력값을 받는 state
   const [filterValue, setFilterValue] = useState(""); //[QnA] 유효성 검사가 완료된 값을 담음
@@ -47,8 +51,8 @@ const Qna = ({ posts, inputData }) => {
   const searchCheck = () => {
     const filter = posts.filter(
       (posts) =>
-        posts.userTitle.toLowerCase().includes(searchValue) ||
-        posts.userName.toLowerCase().includes(searchValue)
+        posts?.userTitle.toLowerCase().includes(searchValue) ||
+        posts?.userName.toLowerCase().includes(searchValue)
     );
 
     //입력값이 없으면 알림창 띄우기
@@ -57,7 +61,7 @@ const Qna = ({ posts, inputData }) => {
   };
 
   return (
-    <QnaBox>
+    <QnaBox isMobile={isMobile}>
       <SearchBox onKeyPress={(e) => handleEnter(e)}>
         <Search placeholder="Search" onChange={(e) => handleSearch(e)} />
       </SearchBox>
@@ -73,7 +77,7 @@ const Qna = ({ posts, inputData }) => {
         <tbody>
           {/* 필터링된 입력값이 없으면 전체 게시물을, 아니면 필터링된 게시물을 보여줌 */}
           {!filterValue
-            ? posts.map((data, i) => {
+            ? posts?.map((data, i) => {
                 return (
                   <tr key={i}>
                     <BodyTd>{i + 1}</BodyTd>
@@ -88,7 +92,7 @@ const Qna = ({ posts, inputData }) => {
                   </tr>
                 );
               })
-            : filterValue.map((data) => {
+            : filterValue?.map((data) => {
                 return (
                   <tr key={data.no}>
                     <BodyTd>{data.no}</BodyTd>
@@ -103,7 +107,7 @@ const Qna = ({ posts, inputData }) => {
                   </tr>
                 );
               })}
-          {inputData &&
+          {/* {inputData &&
             inputData.map((user) => {
               return (
                 <tr key={user.id}>
@@ -118,7 +122,7 @@ const Qna = ({ posts, inputData }) => {
                   <BodyTd>{today}</BodyTd>
                 </tr>
               );
-            })}
+            })} */}
         </tbody>
       </Table>
       <OneButton text="글쓰기" handleWrite={handleWrite} userName={undefined} />
@@ -143,10 +147,12 @@ const Search = styled.input`
   }
 `;
 
-const QnaBox = styled.div`
+const QnaBox = styled.div<{ isMobile: boolean }>`
   margin: 4%;
   height: 100vh;
+  ${({ isMobile }) => isMobile && `width: 100%`}
 `;
+
 const Table = styled.table`
   width: 100%;
   border-top: 1px solid #003300;

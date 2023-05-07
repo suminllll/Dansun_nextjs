@@ -1,18 +1,34 @@
 import Link from "next/link";
 import styled from "styled-components";
+import Image from "next/image";
+
+import bathMain from "../public/images/bathMain.jpg";
+import bedMain from "../public/images/bedMain.jpg";
+import diningMain from "../public/images/diningMain.jpg";
+import dressMain from "../public/images/dressMain.jpg";
+import kitchenMain from "../public/images/kitchenMain.jpg";
+import livingMain from "../public/images/livingMain.jpg";
 
 const Design = () => {
   return (
     <>
       <ImgBox>
         <Bath href={`/${imgList[0].first[0].text}`}>
-          <Img src={imgList[0].first[0].src} alt={imgList[0].first[0].text} />
+          <Img
+            layout="fill"
+            src={imgList[0].first[0].src}
+            alt={imgList[0].first[0].text}
+          />
           <Text>{imgList[0].first[0].text}</Text>
         </Bath>
 
         <ImgContainer>
           <Living href={`/${imgList[0].first[1].text}`}>
-            <Img src={imgList[0].first[1].src} alt={imgList[0].first[1].text} />
+            <Img
+              src={imgList[0].first[1].src}
+              alt={imgList[0].first[1].text}
+              layout="fill"
+            />
             <Text>{imgList[0].first[1].text}</Text>
           </Living>
         </ImgContainer>
@@ -24,6 +40,7 @@ const Design = () => {
             <Img
               src={imgList[0].second[0].src}
               alt={imgList[0].second[0].text}
+              layout="fill"
             />
 
             <Text>{imgList[0].second[0].text}</Text>
@@ -35,6 +52,7 @@ const Design = () => {
             <Img
               src={imgList[0].second[1].src}
               alt={imgList[0].second[1].text}
+              layout="fill"
             />
             <Text>{imgList[0].second[1].text}</Text>
           </Dining>
@@ -44,14 +62,22 @@ const Design = () => {
       <ImgBox>
         <ImgContainer>
           <Bed href={`/${imgList[0].second[0].text}`}>
-            <Img src={imgList[0].third[0].src} alt={imgList[0].third[0].text} />
+            <Img
+              src={imgList[0].third[0].src}
+              alt={imgList[0].third[0].text}
+              layout="fill"
+            />
             <Text>{imgList[0].third[0].text}</Text>
           </Bed>
         </ImgContainer>
 
         <ImgContainer>
           <Dress href={`/${imgList[0].third[1].text}`}>
-            <Img src={imgList[0].third[1].src} alt={imgList[0].third[1].text} />
+            <Img
+              src={imgList[0].third[1].src}
+              alt={imgList[0].third[1].text}
+              layout="fill"
+            />
             <Text>{imgList[0].third[1].text}</Text>
           </Dress>
         </ImgContainer>
@@ -144,11 +170,13 @@ const Dress = styled(ImgWrap)`
   height: 60vh;
 `;
 
-const Img = styled.img`
-  object-fit: cover;
-  filter: brightness(80%);
+const Img = styled(Image)`
   height: 100%;
   width: 100%;
+
+  z-index: -1;
+  object-fit: cover;
+  filter: brightness(80%);
   transition: all 0.1s linear;
 
   :hover {
@@ -157,9 +185,14 @@ const Img = styled.img`
 `;
 
 const Text = styled.div`
-  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50%;
+  text-shadow: #888886 1px 0 10px;
+  /* position: absolute;
   top: 50%;
-  left: 40%;
+  left: 40%; */
   color: white;
   font-size: 3em;
   font-family: "PT Serif", serif;
@@ -172,24 +205,24 @@ const imgList = [
     first: [
       {
         id: 1,
-        src: "/images/bathMain.jpg",
+        src: bathMain,
         text: "Bath",
       },
       {
         id: 2,
-        src: "/images/livingMain.jpg",
+        src: livingMain,
         text: "Living",
       },
     ],
     second: [
       {
         id: 3,
-        src: "/images/kitchenMain.jpg",
+        src: kitchenMain,
         text: "Kitchen",
       },
       {
         id: 4,
-        src: "/images/diningMain.jpg",
+        src: diningMain,
         text: "Dining",
       },
     ],
@@ -197,12 +230,12 @@ const imgList = [
     third: [
       {
         id: 5,
-        src: "/images/bedMain.jpg",
+        src: bedMain,
         text: "Bed",
       },
       {
         id: 6,
-        src: "/images/dressMain.jpg",
+        src: dressMain,
         text: "Dress",
       },
     ],
