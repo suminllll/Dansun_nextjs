@@ -52,8 +52,8 @@ const Qna = ({ posts, inputData, isMobile }: Props) => {
   const searchCheck = () => {
     const filter = posts.filter(
       (posts) =>
-        posts?.userTitle.toLowerCase().includes(searchValue) ||
-        posts?.userName.toLowerCase().includes(searchValue)
+        posts.userTitle.toLowerCase().includes(searchValue) ||
+        posts.userName.toLowerCase().includes(searchValue)
     );
 
     //입력값이 없으면 알림창 띄우기
@@ -77,7 +77,7 @@ const Qna = ({ posts, inputData, isMobile }: Props) => {
         </thead>
         <tbody>
           {/* 필터링된 입력값이 없으면 전체 게시물을, 아니면 필터링된 게시물을 보여줌 */}
-          {!filterValue
+          {filterValue.length < 1
             ? posts?.map((data, i) => {
                 return (
                   <tr key={i}>
