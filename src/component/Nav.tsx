@@ -52,6 +52,24 @@ export const MainNav = ({ handleScroll, scrollY, scrollTo, isMobile }) => {
   );
 };
 
+export const WritingNav = () => {
+  return (
+    <>
+      <NavWrap>
+        <>
+          <LogoTitle href="/" scrollY={scrollY}>
+            Design DanSun
+          </LogoTitle>
+        </>
+        <div>
+          <Category name="qna" scrollY={scrollY}>
+            QnA
+          </Category>
+        </div>
+      </NavWrap>
+    </>
+  );
+};
 //재사용
 
 const Category = styled.button<{ scrollY: any }>`
@@ -142,21 +160,6 @@ const LogoTitle = styled(Link)<{ scrollY: any }>`
     }};
   }
 `;
-
-export const WritingNav = () => {
-  return (
-    <>
-      <NavWrap>
-        <>
-          <LogoTitle href="/">Design DanSun</LogoTitle>
-        </>
-        <RightBox>
-          <Qna>QnA</Qna>
-        </RightBox>
-      </NavWrap>
-    </>
-  );
-};
 
 const NavWrap = styled.nav`
   display: flex;
