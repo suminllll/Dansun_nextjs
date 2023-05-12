@@ -12,6 +12,7 @@ export const MainNav = ({ handleScroll, scrollY, scrollTo, isMobile }) => {
   //   setScrollY(window.pageYOffset);
   // };
   // 스크롤시 handleScroll를 호출해 색깔을 변경
+
   useEffect(() => {
     const watch = () => {
       window.addEventListener("scroll", handleScroll);
@@ -22,7 +23,6 @@ export const MainNav = ({ handleScroll, scrollY, scrollTo, isMobile }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   });
-
   // 클릭시 맨 위로 이동
   const handleAbout = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -52,27 +52,9 @@ export const MainNav = ({ handleScroll, scrollY, scrollTo, isMobile }) => {
   );
 };
 
-export const WritingNav = () => {
-  return (
-    <>
-      <NavWrap>
-        <>
-          <LogoTitle href="/" scrollY={scrollY}>
-            Design DanSun
-          </LogoTitle>
-        </>
-        <div>
-          <Category name="qna" scrollY={scrollY}>
-            QnA
-          </Category>
-        </div>
-      </NavWrap>
-    </>
-  );
-};
 //재사용
 
-const Category = styled.button<{ scrollY: any }>`
+const Category = styled.button<{ scrollY?: any }>`
   margin-right: 10px;
   text-decoration: none;
   letter-spacing: 1.5px;
@@ -134,7 +116,7 @@ const NavBox = styled.nav<{ scrollY: any; isMobile: boolean }>`
   }
 `;
 
-const LogoTitle = styled(Link)<{ scrollY: any }>`
+const LogoTitle = styled(Link)<{ scrollY?: any }>`
   padding-left: 20px;
   margin-right: 20px;
   /* text-shadow: #888886 1px 0 10px; */
@@ -161,12 +143,39 @@ const LogoTitle = styled(Link)<{ scrollY: any }>`
   }
 `;
 
+export const WritingNav = () => {
+  return (
+    <>
+      <NavWrap>
+        <>
+          <LogoTitleWrite href="/">DanSun</LogoTitleWrite>
+        </>
+        <div>
+          <div className="writeQna">QnA</div>
+        </div>
+      </NavWrap>
+    </>
+  );
+};
+
 const NavWrap = styled.nav`
   display: flex;
   align-items: center;
-  justify-content: space-between;
   height: 70px;
   width: 100%;
   z-index: 990;
   background-color: #003300;
+
+  .writeQna {
+    color: white;
+  }
+`;
+
+const LogoTitleWrite = styled(Link)`
+  padding-left: 20px;
+  margin-right: 40px;
+  font-size: 30px;
+  font-family: "Dancing Script", cursive;
+  text-decoration: none;
+  color: white;
 `;

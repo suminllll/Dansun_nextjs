@@ -23,7 +23,7 @@ const Qna = ({ posts, inputData, isMobile }: Props) => {
 
   //게시글 제목 클릭하면 해당 내용으로 이동
   const handleTitle = () => {
-    alert("준비 중 이에요!");
+    // alert("준비 중 이에요!");
     // router.push("/");
   };
 
@@ -61,8 +61,15 @@ const Qna = ({ posts, inputData, isMobile }: Props) => {
     else if (filter) setFilterValue(filter);
   };
 
+  const moveTheDetail = (title: string, name: string) => {
+    return router.push({
+      pathname: `/detail/pwCheck`,
+      query: { title, name },
+    });
+  };
+
   return (
-    <QnaBox isMobile={isMobile}>
+    <QnaBox>
       <SearchBox onKeyPress={(e) => handleEnter(e)}>
         <Search placeholder="Search" onChange={(e) => handleSearch(e)} />
       </SearchBox>
@@ -77,13 +84,15 @@ const Qna = ({ posts, inputData, isMobile }: Props) => {
         </thead>
         <tbody>
           {/* 필터링된 입력값이 없으면 전체 게시물을, 아니면 필터링된 게시물을 보여줌 */}
-          {filterValue.length < 1
+          {filterValue?.length < 1 || filterValue === null
             ? posts?.map((data, i) => {
                 return (
                   <tr key={i}>
                     <BodyTd>{i + 1}</BodyTd>
                     <BodyTd
-                      onClick={handleTitle}
+                      onClick={() =>
+                        moveTheDetail(data.userTitle, data.userName)
+                      }
                       style={{ textAlign: "left", cursor: "pointer" }}
                     >
                       {data.userTitle}
@@ -93,12 +102,14 @@ const Qna = ({ posts, inputData, isMobile }: Props) => {
                   </tr>
                 );
               })
-            : filterValue?.map((data) => {
+            : filterValue?.map((data, i) => {
                 return (
                   <tr key={data.no}>
                     <BodyTd>{data.no}</BodyTd>
                     <BodyTd
-                      onClick={handleTitle}
+                      onClick={() =>
+                        moveTheDetail(data.userTitle, data.userName)
+                      }
                       style={{ textAlign: "left", cursor: "pointer" }}
                     >
                       {data.userTitle}
@@ -134,7 +145,6 @@ const Qna = ({ posts, inputData, isMobile }: Props) => {
 const SearchBox = styled.form`
   float: right;
   margin-bottom: 20px;
-  width: 20%;
   border-bottom: 1px solid lightgray;
 `;
 
@@ -145,13 +155,13 @@ const Search = styled.input`
   ::placeholder {
     color: lightgray;
     letter-spacing: 1px;
+    padding-left: 5px;
   }
 `;
 
-const QnaBox = styled.div<{ isMobile: boolean }>`
+const QnaBox = styled.div`
   margin: 4%;
   height: 100vh;
-  ${({ isMobile }) => isMobile && `width: 100%`}
 `;
 
 const Table = styled.table`

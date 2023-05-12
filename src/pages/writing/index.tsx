@@ -37,20 +37,22 @@ const Writing = () => {
 
   const { userName, userPw, userTitle, userContent } = userValues;
 
-  //엔터를 눌러도 새로고침이 되지않는 함수
-  const handleEnter = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-    }
-  };
-
   //취소버튼 클릭시 홈으로 가기
   const handleCancel = () => {
     router.push("/");
   };
 
   const handleSubmit = (e) => {
-    setCheck(true);
+    if (
+      userName !== "" &&
+      userPw !== "" &&
+      userTitle !== "" &&
+      userContent !== ""
+    ) {
+      setCheck(true);
+      return;
+    }
+    return alert("입력칸을 모두 채워주세요.");
   };
   //TODO: 새로고침시 나가겠냐는 알림창 띄우기
 
@@ -58,7 +60,7 @@ const Writing = () => {
   const handlePush = (e) => {
     e.preventDefault();
     const getData = JSON.parse(localStorage.getItem("userName"));
-    console.log(getData);
+
     const dataList = getData === null ? [userValues] : [...getData, userValues];
 
     window.localStorage.setItem("userName", JSON.stringify(dataList));
@@ -74,7 +76,7 @@ const Writing = () => {
     <>
       <WritingNav />
 
-      <InputForm onKeyPress={handleEnter} onSubmit={handleSubmit}>
+      <InputForm onSubmit={handleSubmit}>
         <TopBox>
           <InputStyle
             name="userName"
@@ -96,7 +98,11 @@ const Writing = () => {
           value={userTitle}
           onChange={handleChange}
           placeholder="제목"
-          style={{ height: "18%", borderTop: "1px solid lightgray" }}
+          style={{
+            height: "18%",
+            borderTop: "1px solid lightgray",
+            borderBottom: "1px solid lightgray",
+          }}
         />
         <TextArea
           name="userContent"
@@ -121,17 +127,24 @@ const Writing = () => {
 const InputForm = styled.form`
   display: flex;
   flex-direction: column;
-  padding: 100px 150px 0 140px;
+  /* padding: 100px 150px 0 140px; */
+  padding: 5%;
   height: 70vh;
+  width: 100%;
 `;
 
 const TopBox = styled.label`
   height: 18%;
+
+  @media (width < 1000px) {
+    display: flex;
+    flex-direction: column;
+    height: 37%;
+  }
 `;
 
 const InputStyle = styled.input`
   border: none;
-  border-bottom: 1px solid lightgray;
   font-size: 18px;
   height: 100%;
   padding-left: 20px;
@@ -139,6 +152,13 @@ const InputStyle = styled.input`
   ::placeholder {
     color: lightgray;
     letter-spacing: 1px;
+  }
+
+  :first-child {
+    @media (width < 1000px) {
+      border-bottom: 1px solid lightgray;
+      width: 100%;
+    }
   }
 `;
 
