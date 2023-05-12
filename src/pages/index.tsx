@@ -48,7 +48,6 @@ const Main = ({ userValues, userName, userPw, userTitle, userContent }) => {
 
   useLayoutEffect(() => {
     let data = JSON.parse(window.localStorage.getItem("userName"));
-    console.log({ data });
 
     setPostsList(data);
   }, []);
@@ -92,18 +91,23 @@ const Article = styled.div`
   width: 100%;
   background-size: 100% 100%;
   background-repeat: no-repeat;
+  margin-right: 0;
 `;
 
 const MainImgBox = styled.div<{ isMobile: boolean }>`
-  height: ${({ isMobile }) => (isMobile ? `450px` : `700px`)};
+  height: 450px;
   width: 100%;
   position: relative;
+
+  @media (width > 1000px) {
+    height: 650px;
+  }
 `;
 
 const Img = styled(Image)<{ isMobile: boolean }>`
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  object-fit: fill;
   z-index: -1;
 `;
 
@@ -112,27 +116,34 @@ const Explain = styled.div<{ isMobile: boolean }>`
   width: 100%;
   color: white;
   position: absolute;
-  top: ${({ isMobile }) => (isMobile ? `300px` : `390px`)};
+  top: 320px;
+
+  @media (width > 1000px) {
+    top: 390px;
+  }
 `;
 
 const TextBox = styled.div<{ isMobile: boolean }>`
   padding-left: 5%;
   font-weight: lighter;
   letter-spacing: 2px;
-  font-size: ${({ isMobile }) => (isMobile ? `30px` : `60px`)};
+  font-size: 30px;
+
+  @media (width > 1000px) {
+    font-size: 60px;
+  }
 `;
 
 const Title = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   margin-top: 10%;
   color: #003300;
   font-size: 50px;
 `;
 
-const ContactTitle = styled(Title)`
-  margin-top: -15%;
-`;
+const ContactTitle = styled(Title)``;
 
 export default Main;

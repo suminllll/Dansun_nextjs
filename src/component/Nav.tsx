@@ -1,8 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
+import Qna from "./Qna";
 
-export const MainNav = ({ scrollY, handleScroll, scrollTo, isMobile }) => {
+export const MainNav = ({ handleScroll, scrollY, scrollTo, isMobile }) => {
+  // const [scrollY, setScrollY] = useState(0); //[nav] 색깔을 바꿔주는 state
+  // //[nav] 색깔 바꾸는 로직
+  // const handleScroll = () => {
+  //   // console.log(window.pageYOffset);
+
+  //   setScrollY(window.pageYOffset);
+  // };
   // 스크롤시 handleScroll를 호출해 색깔을 변경
   useEffect(() => {
     const watch = () => {
@@ -24,19 +32,21 @@ export const MainNav = ({ scrollY, handleScroll, scrollTo, isMobile }) => {
     <>
       <NavBox scrollY={scrollY} isMobile={isMobile}>
         <>
-          <LogoTitle href="/">DanSun Interior</LogoTitle>
+          <LogoTitle href="/" scrollY={scrollY}>
+            DanSun
+          </LogoTitle>
         </>
-        <RightBox>
-          <Design name="design" onClick={scrollTo}>
+        <>
+          <Category name="design" onClick={scrollTo} scrollY={scrollY}>
             DESIGN
-          </Design>
-          <Contact name="contact" onClick={scrollTo}>
+          </Category>
+          <Category name="contact" onClick={scrollTo} scrollY={scrollY}>
             CONTACT
-          </Contact>
-          <Qna name="qna" onClick={scrollTo}>
+          </Category>
+          <Category name="qna" onClick={scrollTo} scrollY={scrollY}>
             QnA
-          </Qna>
-        </RightBox>
+          </Category>
+        </>
       </NavBox>
     </>
   );
@@ -44,58 +54,94 @@ export const MainNav = ({ scrollY, handleScroll, scrollTo, isMobile }) => {
 
 //재사용
 
-const Category = styled.button`
-  margin-right: 40px;
-  color: white;
+const Category = styled.button<{ scrollY: any }>`
+  margin-right: 10px;
   text-decoration: none;
   letter-spacing: 1.5px;
   border-style: none;
   background-color: inherit;
-`;
+  color: ${({ scrollY }) => {
+    if (scrollY > 364) {
+      return "white";
+    } else {
+      return "#003300";
+    }
+  }};
 
-//--------
+  @media (width > 1000px) {
+    margin-right: 40px;
+    color: ${({ scrollY }) => {
+      if (scrollY > 690) {
+        return "white";
+      } else {
+        return "#003300";
+      }
+    }};
+  }
+`;
 
 const NavBox = styled.nav<{ scrollY: any; isMobile: boolean }>`
   display: flex;
   align-items: center;
-  justify-content: space-between;
   position: fixed;
   height: 70px;
   white-space: nowrap;
   overflow: auto;
-  width: ${({ isMobile }) => (isMobile ? `430px` : `100%`)};
+  width: 100%;
   z-index: 990;
   transition: 0.5s ease;
   padding-left: 10px;
+
   &::-webkit-scrollbar {
     display: none;
   }
-  ${({ scrollY }) => {
-    return scrollY > 690
-      ? "background-color: #003300"
-      : "background-color: transparent";
-  }}
+
+  background-color: ${({ scrollY }) => {
+    if (scrollY > 364) {
+      return "#003300";
+    } else {
+      return "transparent";
+    }
+  }};
+
+  @media (width > 1000px) {
+    /* width: 100%; */
+    background-color: ${({ scrollY }) => {
+      if (scrollY > 690) {
+        return "#003300";
+      } else {
+        return "transparent";
+      }
+    }};
+  }
 `;
 
-const LogoTitle = styled(Link)`
+const LogoTitle = styled(Link)<{ scrollY: any }>`
   padding-left: 20px;
-  margin-right: 40px;
-  text-shadow: #888886 1px 0 10px;
+  margin-right: 20px;
+  /* text-shadow: #888886 1px 0 10px; */
   font-size: 30px;
-  color: white;
   font-family: "Dancing Script", cursive;
   text-decoration: none;
+  color: ${({ scrollY }) => {
+    if (scrollY > 364) {
+      return "white";
+    } else {
+      return "#003300";
+    }
+  }};
+
+  @media (width > 1000px) {
+    margin-right: 40px;
+    color: ${({ scrollY }) => {
+      if (scrollY > 690) {
+        return "white";
+      } else {
+        return "#003300";
+      }
+    }};
+  }
 `;
-
-const RightBox = styled.div``;
-
-const About = styled(Category)``;
-
-const Design = styled(Category)``;
-
-const Contact = styled(Category)``;
-
-const Qna = styled(Category)``;
 
 export const WritingNav = () => {
   return (

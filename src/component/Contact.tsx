@@ -75,7 +75,7 @@ const Contact = ({ isMobile }: Props) => {
 const TextBox = styled.div`
   margin: 4% 10%;
   font-size: 17px;
-
+  text-align: center;
   .text {
     margin-top: 10px;
     color: #006633;
@@ -83,10 +83,15 @@ const TextBox = styled.div`
 `;
 
 const Map = styled.div`
-  margin-left: 10%;
-  width: 80vw;
-  height: 80vh;
+  margin-left: 20px;
+  width: 90%;
+  height: 400px;
   margin-bottom: 50px;
+
+  @media (width > 1000px) {
+    height: 60vh;
+    margin-left: 5%;
+  }
 `;
 
 const KakaoBox = styled.div`
@@ -95,9 +100,8 @@ const KakaoBox = styled.div`
   border-radius: 8px;
   border: 1px solid #ffe146;
   padding-left: 15px;
-  text-align: center;
   cursor: pointer;
-  margin: 25px 0 30px 10%;
+  margin: 25px auto;
   background-color: #ffe146;
   color: #006633;
 `;
