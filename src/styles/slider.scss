@@ -6,7 +6,8 @@
   padding-top: 30px;
   background-color: #ebeeec;
 
-  button {
+  button,
+  button::after {
     position: absolute;
     background-color: rgb(51, 50, 50);
     width: 40px;
@@ -16,10 +17,25 @@
   }
 }
 
-// .slick-arrow,
+.slick-track {
+  width: 8000px !important;
+}
 
-// .slick-prev:hover,
-// .slick-prev:focus,
+// .slick-slide,
+// .slick-active {
+//   width: 250px;
+
+//   margin-right: 57px;
+// }
+
+.slick-slide,
+.slick-active,
+.slick-current {
+  width: 277px !important;
+  margin-right: 40px !important;
+}
+
+.slick-next::after,
 .slick-next:hover,
 .slick-next:focus,
 .slick-next {
@@ -27,6 +43,7 @@
 }
 
 .slick-prev:hover,
+.slick-prev::after,
 .slick-prev:focus,
 .slick-prev {
   left: 0 !important;

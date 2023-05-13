@@ -77,7 +77,11 @@ const Qna = ({ posts, inputData, isMobile }: Props) => {
         <thead>
           <tr>
             <HeadTh style={{ width: 100 }}>No</HeadTh>
-            <HeadTh style={{ width: 700 }}>제목</HeadTh>
+            <HeadTh
+              style={{ width: 700, textAlign: "left", paddingLeft: "13px" }}
+            >
+              제목
+            </HeadTh>
             <HeadTh style={{ width: 150 }}>글쓴이</HeadTh>
             <HeadTh style={{ width: 150 }}>날짜</HeadTh>
           </tr>
@@ -179,11 +183,12 @@ const HeadTh = styled.th`
 
 const BodyTd = styled.td`
   text-align: center;
-  padding: 15px;
+  padding: 15px 13px;
   border-top: 1px solid lightgray;
   border-bottom: 1px solid lightgray;
   color: #a0a0a0;
   letter-spacing: 1px;
+  white-space: nowrap;
 `;
 
 export default Qna;

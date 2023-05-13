@@ -8,12 +8,32 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import r1 from "../public/images/bathMain.jpg";
-import r2 from "../public/images/bedMain.jpg";
-import r3 from "../public/images/diningMain.jpg";
-import r4 from "../public/images/dressMain.jpg";
-import r5 from "../public/images/livingMain.jpg";
-import r6 from "../public/images/kitchenMain.jpg";
+import r1 from "../public/images/remodeling/r1.jpeg";
+import r2 from "../public/images/remodeling/r2.jpeg";
+import r3 from "../public/images/remodeling/r3.jpeg";
+import r4 from "../public/images/remodeling/r4.jpeg";
+import r5 from "../public/images/remodeling/r5.jpeg";
+import r6 from "../public/images/remodeling/r6.jpeg";
+import r7 from "../public/images/remodeling/r7.jpeg";
+import r8 from "../public/images/remodeling/r8.jpeg";
+
+import c1 from "../public/images/commercial/c1.jpeg";
+import c2 from "../public/images/commercial/c2.jpeg";
+import c3 from "../public/images/commercial/c3.jpeg";
+import c4 from "../public/images/commercial/c4.jpeg";
+import c5 from "../public/images/commercial/c5.jpeg";
+import c6 from "../public/images/commercial/c6.jpeg";
+import c7 from "../public/images/commercial/c7.jpeg";
+import c8 from "../public/images/commercial/c8.jpeg";
+import c9 from "../public/images/commercial/c9.jpeg";
+
+import o1 from "../public/images/other/o1.jpeg";
+import o2 from "../public/images/other/o2.jpeg";
+import o3 from "../public/images/other/o3.jpeg";
+import o4 from "../public/images/other/o4.jpeg";
+import o5 from "../public/images/other/o5.jpeg";
+import o6 from "../public/images/other/o6.jpeg";
+import o7 from "../public/images/other/o7.jpeg";
 
 const OpenBox = ({ type }: Props) => {
   const [imgList, setImgList] = useState([]);
@@ -23,25 +43,24 @@ const OpenBox = ({ type }: Props) => {
   const settings = {
     dots: false, //슬라이드 밑에 점 보이게
     infinite: false, //무한으로 반복
-    slidesToShow: 4, //n장씩 보이게
+    slidesToShow: 2, //n장씩 보이게
     slidesToScroll: 1, //n장씩 스크롤
     className: "slider",
     // centerMode: true,
-    // centerPadding: "10px", //0px은 슬라이드 끝쪽 이미지가 안잘림
+    // centerPadding: "40px", //0px은 슬라이드 끝쪽 이미지가 안잘림
     speed: 500,
     arrows: true,
     draggable: true,
-    // touchThreshold: 500,// 슬라이드를 이동할 떄 슬라이드 너비를 1/touchThreshold 이상 스와이프하여 슬라이드를 전환
   };
 
   useEffect(() => {
     switch (type) {
       case "remodeling":
-        return setImgList(remoList);
+        return setImgList(remodelingList);
       case "commercial":
-        return setImgList(remoList);
+        return setImgList(commercialList);
       case "other":
-        return setImgList(remoList);
+        return setImgList(otherList);
     }
   }, [type]);
 
@@ -64,10 +83,10 @@ const OpenBox = ({ type }: Props) => {
   return (
     <>
       <Slider {...settings}>
-        {imgList?.map((e) => (
-          <ListWrapper key={e.src} onClick={() => setZoomSrc(e.src)}>
-            <Img src={e.src} alt={e.text} />
-            <Text>{e.text}</Text>
+        {imgList?.map((e, i) => (
+          <ListWrapper key={i} onClick={() => setZoomSrc(e)}>
+            <Img src={e} alt="" />
+            {/* <Text>{e.text}</Text> */}
           </ListWrapper>
         ))}
       </Slider>
@@ -87,10 +106,11 @@ const OpenBox = ({ type }: Props) => {
 
 const ListWrapper = styled.div`
   cursor: pointer;
+  padding-bottom: 25px;
 `;
 
 const Img = styled(Image)`
-  width: 265px;
+  width: 300px;
   height: 300px;
   border-radius: 5px;
 `;
@@ -128,7 +148,6 @@ const HiddenWrapper = styled.div`
 
   img {
     display: block;
-    max-width: 100%;
     width: 100%;
     height: 100%;
     line-height: 0;
@@ -136,12 +155,8 @@ const HiddenWrapper = styled.div`
   }
 `;
 
-const remoList = [
-  { src: r1, text: "r1" },
-  { src: r2, text: "r2" },
-  { src: r3, text: "r3" },
-  { src: r4, text: "r4" },
-  { src: r5, text: "r5" },
-  { src: r6, text: "r6" },
-];
+const remodelingList = [r1, r2, r3, r4, r5, r6, r7, r8];
+const commercialList = [c1, c2, c3, c4, c5, c6, c7, c8, c9];
+const otherList = [o1, o2, o7, o3, o4, o5, o6];
+
 export default OpenBox;

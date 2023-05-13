@@ -4,15 +4,6 @@ import Link from "next/link";
 import Qna from "./Qna";
 
 export const MainNav = ({ handleScroll, scrollY, scrollTo, isMobile }) => {
-  // const [scrollY, setScrollY] = useState(0); //[nav] 색깔을 바꿔주는 state
-  // //[nav] 색깔 바꾸는 로직
-  // const handleScroll = () => {
-  //   // console.log(window.pageYOffset);
-
-  //   setScrollY(window.pageYOffset);
-  // };
-  // 스크롤시 handleScroll를 호출해 색깔을 변경
-
   useEffect(() => {
     const watch = () => {
       window.addEventListener("scroll", handleScroll);
@@ -23,6 +14,7 @@ export const MainNav = ({ handleScroll, scrollY, scrollTo, isMobile }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   });
+
   // 클릭시 맨 위로 이동
   const handleAbout = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -36,7 +28,7 @@ export const MainNav = ({ handleScroll, scrollY, scrollTo, isMobile }) => {
             DanSun
           </LogoTitle>
         </>
-        <>
+        <div>
           <Category name="design" onClick={scrollTo} scrollY={scrollY}>
             DESIGN
           </Category>
@@ -46,7 +38,7 @@ export const MainNav = ({ handleScroll, scrollY, scrollTo, isMobile }) => {
           <Category name="qna" onClick={scrollTo} scrollY={scrollY}>
             QnA
           </Category>
-        </>
+        </div>
       </NavBox>
     </>
   );
@@ -55,28 +47,18 @@ export const MainNav = ({ handleScroll, scrollY, scrollTo, isMobile }) => {
 //재사용
 
 const Category = styled.button<{ scrollY?: any }>`
-  margin-right: 10px;
+  font-size: 14px;
   text-decoration: none;
   letter-spacing: 1.5px;
   border-style: none;
   background-color: inherit;
-  color: ${({ scrollY }) => {
-    if (scrollY > 364) {
-      return "white";
-    } else {
-      return "#003300";
-    }
-  }};
+  font-weight: 500;
+  color: white;
+  text-shadow: #888886 1px 0 5px;
 
   @media (width > 1000px) {
     margin-right: 40px;
-    color: ${({ scrollY }) => {
-      if (scrollY > 690) {
-        return "white";
-      } else {
-        return "#003300";
-      }
-    }};
+    font-size: 17px;
   }
 `;
 
@@ -91,6 +73,7 @@ const NavBox = styled.nav<{ scrollY: any; isMobile: boolean }>`
   z-index: 990;
   transition: 0.5s ease;
   padding-left: 10px;
+  justify-content: space-between;
 
   &::-webkit-scrollbar {
     display: none;
@@ -105,7 +88,6 @@ const NavBox = styled.nav<{ scrollY: any; isMobile: boolean }>`
   }};
 
   @media (width > 1000px) {
-    /* width: 100%; */
     background-color: ${({ scrollY }) => {
       if (scrollY > 690) {
         return "#003300";
@@ -117,10 +99,9 @@ const NavBox = styled.nav<{ scrollY: any; isMobile: boolean }>`
 `;
 
 const LogoTitle = styled(Link)<{ scrollY?: any }>`
-  padding-left: 20px;
-  margin-right: 20px;
-  /* text-shadow: #888886 1px 0 10px; */
-  font-size: 30px;
+  margin-right: 10px;
+  font-weight: 700;
+  font-size: 40px;
   font-family: "Dancing Script", cursive;
   text-decoration: none;
   color: ${({ scrollY }) => {
@@ -132,7 +113,7 @@ const LogoTitle = styled(Link)<{ scrollY?: any }>`
   }};
 
   @media (width > 1000px) {
-    margin-right: 40px;
+    margin-left: 40px;
     color: ${({ scrollY }) => {
       if (scrollY > 690) {
         return "white";

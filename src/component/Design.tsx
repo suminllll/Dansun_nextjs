@@ -42,9 +42,9 @@ const Design = () => {
 //재사용
 
 const ImgWrap = styled.div`
-  position: relative;
   cursor: pointer;
   display: flex;
+  position: relative;
 `;
 //--------
 
@@ -78,15 +78,15 @@ const Remodeling = styled(ImgWrap)`
 
 const Commercial = styled(ImgWrap)`
   margin-bottom: 50px;
-  margin-left: 86px;
-  width: 85%;
+  margin-left: 72px;
+  margin-right: 13px;
   height: 60vh;
-  right: 1%;
+  position: relative;
 
   @media (width > 1000px) {
-    width: 70%;
     height: 90vh;
     margin-left: 200px;
+    margin-right: 43px;
   }
 
   &:hover {
@@ -117,7 +117,9 @@ const Img = styled(Image)`
   object-fit: cover;
   filter: brightness(80%);
   transition: all 0.1s linear;
-
+  right: 0;
+  position: absolute;
+  top: 405px;
   &:hover {
     transform: scale(1.1);
   }
