@@ -5,6 +5,7 @@
 
 인테리어 홈페이지(실 서비스중)
 홈페이지 링크: [dansun.vercel.app](https://dansun.vercel.app/)
+초기개발부터 배포까지 완료
 
 ### 스택
 Next.js, TypeScript, styled-component, Vercel
