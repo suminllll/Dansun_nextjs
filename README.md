@@ -1,6 +1,7 @@
 ## 개인 프로젝트
 
-![스크린샷 2023-05-14 오후 8.33.59.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2c5ae8fc-4f90-4687-b1b9-86a126cb2405/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-05-14_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_8.33.59.png)
+![스크린샷 2023-05-14 오후 8 33 59](https://github.com/suminllll/Dansun_nextjs/assets/79704928/02a7430b-1d65-499f-83fa-d937a1c08342)
+
 
 인테리어 홈페이지(실 서비스중)
 홈페이지 링크: [dansun.vercel.app](https://dansun.vercel.app/)
