@@ -43,7 +43,11 @@ const Writing = () => {
     router.push("/");
   };
 
-  const handleSubmit = (e) => {
+  //TODO: 새로고침시 나가겠냐는 알림창 띄우기
+
+  //게시 버튼을 누르면 데이터가 로컬스토리지에 저장됨
+  const handlePush = (e) => {
+    e.preventDefault();
     if (
       userName !== "" &&
       userPw !== "" &&
@@ -52,24 +56,19 @@ const Writing = () => {
       userPhone !== ""
     ) {
       setCheck(true);
+      const getData = JSON.parse(localStorage.getItem("userName"));
+
+      const dataList =
+        getData === null ? [userValues] : [...getData, userValues];
+
+      window.localStorage.setItem("userName", JSON.stringify(dataList));
+
+      alert("저장되었습니다.");
+
+      router.push("/");
       return;
     }
     return alert("입력칸을 모두 채워주세요.");
-  };
-  //TODO: 새로고침시 나가겠냐는 알림창 띄우기
-
-  //게시 버튼을 누르면 데이터가 로컬스토리지에 저장됨
-  const handlePush = (e) => {
-    e.preventDefault();
-    const getData = JSON.parse(localStorage.getItem("userName"));
-
-    const dataList = getData === null ? [userValues] : [...getData, userValues];
-
-    window.localStorage.setItem("userName", JSON.stringify(dataList));
-
-    alert("저장되었습니다.");
-
-    router.push("/");
   };
 
   // localStorage.removeItem('dataName');
@@ -78,7 +77,7 @@ const Writing = () => {
     <>
       <WritingNav />
 
-      <InputForm onSubmit={handleSubmit}>
+      <InputForm>
         <TopBox>
           <InputStyle
             name="userName"
@@ -113,7 +112,6 @@ const Writing = () => {
           placeholder="휴대폰번호"
           style={{
             height: "18%",
-
             borderBottom: "1px solid lightgray",
           }}
         />
