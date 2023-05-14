@@ -1,34 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 개인 프로젝트
 
-## Getting Started
+![스크린샷 2023-05-14 오후 8 33 59](https://github.com/suminllll/Dansun_nextjs/assets/79704928/02a7430b-1d65-499f-83fa-d937a1c08342)
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+인테리어 홈페이지(실 서비스중)<br/>
+홈페이지 링크: [dansun.vercel.app](https://dansun.vercel.app/)<br/>
+초기개발부터 배포까지 완료
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 스택
+Next.js, TypeScript, styled-component, Vercel
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### 기능
+- [웹 & 모바일웹] 반응형으로 구현
+- [Nav] 카테고리 클릭시 해당 섹션으로 스크롤
+- [Nav] 스크롤시 네브 색깔 바꾸기
+- [Design] 반응형 이미지 
+- [Design] 마우스오버시 이미지 확대 
+- [Design] 디자인 클릭시 해당 디자인 관련 이미지 슬라이드와 동시에 슬라이드로 스크롤 이동
+- [Contact] 카카오톡 오픈 채팅방 이동
+- [Contact] 카카오맵 API 사용하기
+- [Q&A] 검색기능
+- [Q&A] CRUD 기능
+- [Q&A] 로컬스토리지를 사용해서 데이터 저장
+- Vercel을 이용해서 배포
