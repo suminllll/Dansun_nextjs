@@ -30,6 +30,7 @@ const Detail = () => {
         <ContentWrapper>
           <Content>{data[0]?.userTitle}</Content>
           <Content>{data[0]?.userName}</Content>
+          <Content>{data[0]?.userPhone}</Content>
           <Content>{data[0]?.userContent}</Content>
         </ContentWrapper>
       )}

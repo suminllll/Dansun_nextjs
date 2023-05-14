@@ -23,6 +23,7 @@ const Writing = () => {
     userName: "",
     userPw: "",
     userTitle: "",
+    userPhone: "",
     userContent: "",
   }); //글쓰기에서의 input 값을 담을 state
 
@@ -35,7 +36,7 @@ const Writing = () => {
     });
   };
 
-  const { userName, userPw, userTitle, userContent } = userValues;
+  const { userName, userPw, userTitle, userContent, userPhone } = userValues;
 
   //취소버튼 클릭시 홈으로 가기
   const handleCancel = () => {
@@ -47,7 +48,8 @@ const Writing = () => {
       userName !== "" &&
       userPw !== "" &&
       userTitle !== "" &&
-      userContent !== ""
+      userContent !== "" &&
+      userPhone !== ""
     ) {
       setCheck(true);
       return;
@@ -101,6 +103,17 @@ const Writing = () => {
           style={{
             height: "18%",
             borderTop: "1px solid lightgray",
+            borderBottom: "1px solid lightgray",
+          }}
+        />
+        <InputStyle
+          name="userPhone"
+          value={userPhone}
+          onChange={handleChange}
+          placeholder="휴대폰번호"
+          style={{
+            height: "18%",
+
             borderBottom: "1px solid lightgray",
           }}
         />
