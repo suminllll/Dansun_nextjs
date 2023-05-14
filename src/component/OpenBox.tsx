@@ -46,8 +46,8 @@ const OpenBox = ({ type }: Props) => {
     slidesToShow: 2, //n장씩 보이게
     slidesToScroll: 1, //n장씩 스크롤
     className: "slider",
-    centerMode: true,
-    centerPadding: "10px", //0px은 슬라이드 끝쪽 이미지가 안잘림
+    // centerMode: true,
+    // centerPadding: "-40px", //0px은 슬라이드 끝쪽 이미지가 안잘림
     speed: 500,
     arrows: true,
     draggable: true,
@@ -101,7 +101,7 @@ const OpenBox = ({ type }: Props) => {
           <HiddenWrapper>
             <div ref={modalRef}>
               <button onClick={() => setZoomSrc("")}>X</button>
-              <Image src={zoomSrc} alt="" style={{ objectFit: "none" }} />
+              <Image src={zoomSrc} alt="" style={{ objectFit: "contain" }} />
             </div>
           </HiddenWrapper>
         </>

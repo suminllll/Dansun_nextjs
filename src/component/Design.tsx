@@ -18,17 +18,17 @@ const Design = () => {
     switch (type) {
       case "remodeling":
         return window.scrollTo({
-          top: 1000,
+          top: 900,
           behavior: "smooth",
         });
       case "commercial":
         return window.scrollTo({
-          top: 1500,
+          top: 1300,
           behavior: "smooth",
         });
       case "other":
         return window.scrollTo({
-          top: 2000,
+          top: 1650,
           behavior: "smooth",
         });
     }

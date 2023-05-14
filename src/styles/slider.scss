@@ -7,7 +7,13 @@
   background-color: #ebeeec;
 
   button,
-  button::after {
+  button::after,
+  .slick-next::after,
+  .slick-next:hover,
+  .slick-next:focus,
+  .slick-prev:hover,
+  .slick-prev:focus,
+  .slick-prev::after {
     position: absolute;
     background-color: rgb(51, 50, 50);
     width: 40px;
@@ -22,7 +28,15 @@
 }
 
 .slick-list {
-  margin-right: 0 !important;
+  width: 400 !important; //600
+  //margin-right: 300px !important;
+}
+
+.slick-slider,
+.slider,
+.slick-initialized {
+  width: 400 !important; //600
+  // margin-left: 100px !important;
 }
 
 .slick-slide,
