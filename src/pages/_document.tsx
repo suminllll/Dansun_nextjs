@@ -39,21 +39,22 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <link rel="icon" href="%PUBLIC_URL%/favicon1.ico" />
+          <link rel="shortcut icon" href="%PUBLIC_URL%/favicon1.ico" />
           <title>DansunDesign</title>
           <script
             type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=958e94cb44389e401dfb9507be374133"
           ></script>
-          <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="theme-color" content="#000000" />
           <meta
             name="description"
             content="Web site created using create-react-app"
           />
-          <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+          {/* <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
 
-          <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+          <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> */}
           <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"

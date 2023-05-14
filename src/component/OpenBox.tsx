@@ -6,7 +6,7 @@ import Slider from "react-slick";
 import Image from "next/image";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useEffect, useRef, useState } from "react";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import r1 from "../public/images/remodeling/r1.jpeg";
 import r2 from "../public/images/remodeling/r2.jpeg";
@@ -46,8 +46,8 @@ const OpenBox = ({ type }: Props) => {
     slidesToShow: 2, //n장씩 보이게
     slidesToScroll: 1, //n장씩 스크롤
     className: "slider",
-    // centerMode: true,
-    // centerPadding: "40px", //0px은 슬라이드 끝쪽 이미지가 안잘림
+    centerMode: true,
+    centerPadding: "10px", //0px은 슬라이드 끝쪽 이미지가 안잘림
     speed: 500,
     arrows: true,
     draggable: true,
@@ -85,7 +85,13 @@ const OpenBox = ({ type }: Props) => {
       <Slider {...settings}>
         {imgList?.map((e, i) => (
           <ListWrapper key={i} onClick={() => setZoomSrc(e)}>
-            <Img src={e} alt="" />
+            <Image
+              src={e}
+              alt=""
+              width={300}
+              height={250}
+              style={{ borderRadius: 5 }}
+            />
             {/* <Text>{e.text}</Text> */}
           </ListWrapper>
         ))}
@@ -95,7 +101,7 @@ const OpenBox = ({ type }: Props) => {
           <HiddenWrapper>
             <div ref={modalRef}>
               <button onClick={() => setZoomSrc("")}>X</button>
-              <Image src={zoomSrc} alt="" />
+              <Image src={zoomSrc} alt="" style={{ objectFit: "none" }} />
             </div>
           </HiddenWrapper>
         </>
@@ -109,16 +115,6 @@ const ListWrapper = styled.div`
   padding-bottom: 25px;
 `;
 
-const Img = styled(Image)`
-  width: 300px;
-  height: 300px;
-  border-radius: 5px;
-`;
-
-const Text = styled.p`
-  text-align: center;
-`;
-
 const HiddenWrapper = styled.div`
   position: fixed;
   text-align: center;
@@ -127,10 +123,9 @@ const HiddenWrapper = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  padding: 0 8px;
   background-color: rgba(40, 40, 40, 0.8);
   z-index: 9900;
-  padding: 3% 5% 1% 5%;
+  padding: 6% 5% 1% 5%;
 
   div {
     width: 100%;
@@ -144,14 +139,13 @@ const HiddenWrapper = styled.div`
     width: 40px;
     height: 40px;
     opacity: 0.7;
+    text-align: center;
   }
 
   img {
-    display: block;
     width: 100%;
     height: 100%;
-    line-height: 0;
-    padding: 40px 0 40px;
+    // padding: 40px 0 40px;
   }
 `;
 

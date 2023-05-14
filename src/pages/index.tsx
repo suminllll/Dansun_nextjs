@@ -48,7 +48,6 @@ const Main = ({ userValues, userName, userPw, userTitle, userContent }) => {
 
   useLayoutEffect(() => {
     let data = JSON.parse(window.localStorage.getItem("userName"));
-    console.log(data);
 
     setPostsList(data);
   }, []);

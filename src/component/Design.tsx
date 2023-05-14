@@ -1,11 +1,10 @@
-import Link from "next/link";
 import styled from "styled-components";
 import Image from "next/image";
 
 import office from "../public/images/office.jpg";
 import restaurant from "../public/images/restaurant.jpg";
 import bedMain from "../public/images/bedMain.jpg";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import OpenBox from "./OpenBox";
 
 const Design = () => {
@@ -13,23 +12,48 @@ const Design = () => {
   const [type, setType] = useState("");
 
   const imgClickHandler = (type: string) => {
-    setImgOpen(!imgOpen);
+    setImgOpen(true);
     setType(type);
+
+    switch (type) {
+      case "remodeling":
+        return window.scrollTo({
+          top: 1000,
+          behavior: "smooth",
+        });
+      case "commercial":
+        return window.scrollTo({
+          top: 1500,
+          behavior: "smooth",
+        });
+      case "other":
+        return window.scrollTo({
+          top: 2000,
+          behavior: "smooth",
+        });
+    }
   };
+
   return (
     <>
       <ImgBox>
-        <Remodeling onClick={() => imgClickHandler("remodeling")}>
+        <Remodeling
+          id="remodeling"
+          onClick={() => imgClickHandler("remodeling")}
+        >
           <Img src={imgList[0][0].src} alt="" layout="fill" />
           <Text>{imgList[0][0].text}</Text>
         </Remodeling>
         {imgOpen && type === "remodeling" && <OpenBox type={type} />}
-        <Commercial onClick={() => imgClickHandler("commercial")}>
+        <Commercial
+          id="commercial"
+          onClick={() => imgClickHandler("commercial")}
+        >
           <Img src={imgList[1][0].src} alt="" layout="fill" />
           <Text>{imgList[1][0]?.text}</Text>
         </Commercial>
         {imgOpen && type === "commercial" && <OpenBox type={type} />}
-        <Other onClick={() => imgClickHandler("other")}>
+        <Other id="other" onClick={() => imgClickHandler("other")}>
           <Img src={imgList[2][0]?.src} alt="" layout="fill" />
           <Text>{imgList[2][0]?.text}</Text>
         </Other>
@@ -63,11 +87,11 @@ const Remodeling = styled(ImgWrap)`
   margin-right: -30px;
   left: 3%;
   width: 80%;
-  height: 60vh;
+  height: 50vh;
 
   @media (width > 1000px) {
     width: 70%;
-    height: 90vh;
+    height: 65vh;
     left: 50px;
   }
 
@@ -80,11 +104,11 @@ const Commercial = styled(ImgWrap)`
   margin-bottom: 50px;
   margin-left: 72px;
   margin-right: 13px;
-  height: 60vh;
+  height: 50vh;
   position: relative;
 
   @media (width > 1000px) {
-    height: 90vh;
+    height: 65vh;
     margin-left: 200px;
     margin-right: 43px;
   }
@@ -97,11 +121,11 @@ const Commercial = styled(ImgWrap)`
 const Other = styled(ImgWrap)`
   left: 3%;
   width: 80%;
-  height: 60vh;
+  height: 50vh;
 
   @media (width > 1000px) {
     width: 70%;
-    height: 90vh;
+    height: 65vh;
     left: 50px;
   }
 

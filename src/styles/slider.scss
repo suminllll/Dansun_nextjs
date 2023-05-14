@@ -18,15 +18,12 @@
 }
 
 .slick-track {
-  width: 8000px !important;
+  //width: 1600px !important;
 }
 
-// .slick-slide,
-// .slick-active {
-//   width: 250px;
-
-//   margin-right: 57px;
-// }
+.slick-list {
+  margin-right: 0 !important;
+}
 
 .slick-slide,
 .slick-active,

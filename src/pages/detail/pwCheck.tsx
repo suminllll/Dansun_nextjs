@@ -6,33 +6,28 @@ import { useRouter } from "next/router";
 const PwCheck = () => {
   const [pw, setPw] = useState("");
   const router = useRouter();
+  const title = router.query.title;
+  const name = router.query.name;
+
   const handleChange = (e) => {
     setPw(e.target.value);
   };
-  const title = router.query.title;
-  const name = router.query.name;
 
   const pwCheckHandler = (e: any) => {
     e.preventDefault();
 
     let data = JSON.parse(window.localStorage.getItem("userName"));
 
-    if (data) {
-      data.filter((e) => {
-        if (e.userPw === pw) {
-          if (e.userTitle === title && e.userName === name) {
-            return router.push({
-              pathname: `/detail`,
-              query: { title, name },
-            });
-          }
-          return;
-        }
-      });
-      return;
-    }
+    const pwValue = data.filter(
+      (e) => e.userPw === pw && e.userTitle === title && e.userName === name
+    );
 
-    return alert("비밀번호 오류");
+    return pwValue.length > 0
+      ? router.push({
+          pathname: `/detail`,
+          query: { title, name },
+        })
+      : alert("비밀번호 오류");
   };
   return (
     <>

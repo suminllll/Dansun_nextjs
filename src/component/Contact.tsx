@@ -53,7 +53,7 @@ const Contact = ({ isMobile }: Props) => {
 
       <KakaoBox>
         <a
-          href="https://open.kakao.com/o/spyReIGe"
+          href="https://open.kakao.com/o/skv8Rkkf"
           style={{ textAlign: "center", margin: "auto 0" }}
         >
           <p style={{ display: "flex" }}>
@@ -112,12 +112,12 @@ const TEXTLIST = [
   {
     id: 1,
     title: "Tel",
-    text: "010-0000-0000 / 054-244-9947",
+    text: "010-3521-9933 / 054-244-9947",
   },
   {
     id: 2,
     title: "E-mail",
-    text: "krlatnalsl01@gmail.com",
+    text: "dae9933yun@hanmail.net",
   },
   {
     id: 3,
