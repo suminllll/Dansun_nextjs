@@ -165,7 +165,6 @@ const Search = styled.input`
 
 const QnaBox = styled.div`
   margin: 4%;
-  height: 100vh;
 `;
 
 const Table = styled.table`

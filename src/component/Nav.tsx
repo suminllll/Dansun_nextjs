@@ -15,11 +15,6 @@ export const MainNav = ({ handleScroll, scrollY, scrollTo, isMobile }) => {
     };
   });
 
-  // 클릭시 맨 위로 이동
-  const handleAbout = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  };
-
   return (
     <>
       <NavBox scrollY={scrollY} isMobile={isMobile}>

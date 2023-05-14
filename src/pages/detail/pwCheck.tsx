@@ -2,9 +2,11 @@ import styled from "styled-components";
 import { WritingNav } from "../../component/Nav";
 import React, { SetStateAction, useLayoutEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const PwCheck = () => {
   const [pw, setPw] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
   const router = useRouter();
   const title = router.query.title;
   const name = router.query.name;
@@ -28,7 +30,37 @@ const PwCheck = () => {
           query: { title, name },
         })
       : alert("비밀번호 오류");
+    // const returnValue = router.push({
+    //   pathname: `/detail`,
+    //   query: { title, name },
+    // });
+    // // return isAdmin
+    // //   ? pw === "5243"
+    // //     ? returnValue
+    // //     : alert("비밀번호 오류")
+    // //   : pwValue.length > 0
+    // //   ? returnValue
+    // //   : alert("비밀번호 오류");
+    // console.log({ isAdmin });
+    // console.log({ pw });
+    // console.log({ pwValue });
+
+    // if (isAdmin && pw === "5243") {
+    //   console.log("1");
+
+    //   return returnValue;
+    // } else if (pwValue.length > 0) {
+    //   console.log("2");
+
+    //   return returnValue;
+    // } else {
+    //   console.log("3");
+
+    //   alert("비밀번호 오류");
+    //   return;
+    // }
   };
+
   return (
     <>
       <WritingNav />
@@ -45,6 +77,11 @@ const PwCheck = () => {
           <button>확인</button>
         </PwWrapper>
       </InputForm>
+      {/* {!isAdmin && (
+        <AdminText href="/detail/pwCheck" onClick={() => setIsAdmin(true)}>
+          관리자 이신가요?
+        </AdminText>
+      )} */}
     </>
   );
 };
@@ -96,4 +133,10 @@ const PwWrapper = styled.form`
   }
 `;
 
+const AdminText = styled(Link)`
+  color: lightgray;
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+`;
 export default PwCheck;

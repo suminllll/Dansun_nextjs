@@ -52,6 +52,14 @@ const Main = ({ userValues, userName, userPw, userTitle, userContent }) => {
     setPostsList(data);
   }, []);
 
+  // 클릭시 맨 위로 이동
+  const upHandler = () => {
+    window.scrollTo({ top: 0 });
+  };
+
+  const downHandler = () => {
+    focusTarget.current[2].scrollIntoView();
+  };
   return (
     <Article>
       <MainNav
@@ -71,7 +79,7 @@ const Main = ({ userValues, userName, userPw, userTitle, userContent }) => {
           </TextBox>
         </Explain>
       </MainImgBox>
-
+      <DownButton onClick={() => downHandler()}>↓</DownButton>
       <Title ref={(el) => (focusTarget.current[0] = el)}>DESIGN</Title>
       <Design />
 
@@ -82,6 +90,7 @@ const Main = ({ userValues, userName, userPw, userTitle, userContent }) => {
 
       <Title ref={(el) => (focusTarget.current[2] = el)}>Q&A</Title>
       <Qna posts={postsList} inputData={undefined} isMobile={isMobile} />
+      <UpButton onClick={() => upHandler()}>↑</UpButton>
     </Article>
   );
 };
@@ -92,6 +101,7 @@ const Article = styled.div`
   background-size: 100% 100%;
   background-repeat: no-repeat;
   margin-right: 0;
+  position: relative;
 `;
 
 const MainImgBox = styled.div<{ isMobile: boolean }>`
@@ -145,5 +155,38 @@ const Title = styled.div`
 `;
 
 const ContactTitle = styled(Title)``;
+
+const UpDownButton = styled.button`
+  position: absolute;
+  border-radius: 50px;
+  background-color: #003300;
+  color: white;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+
+  @media (width < 1000px) {
+    padding: 3px;
+  }
+`;
+
+const UpButton = styled(UpDownButton)`
+  bottom: 300px;
+  right: 30px;
+
+  @media (width < 1000px) {
+    bottom: 250px;
+    right: 10px;
+  }
+`;
+
+const DownButton = styled(UpDownButton)`
+  top: 680px;
+  right: 30px;
+  @media (width < 1000px) {
+    top: 500px;
+    right: 10px;
+  }
+`;
 
 export default Main;

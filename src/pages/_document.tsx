@@ -39,8 +39,8 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel="icon" href="%PUBLIC_URL%/favicon1.ico" />
-          <link rel="shortcut icon" href="%PUBLIC_URL%/favicon1.ico" />
+          <link rel="icon" href="/favicon1.ico" />
+
           <title>DansunHousing</title>
           <script
             type="text/javascript"
