@@ -36,7 +36,7 @@ export const MainNav = ({ handleScroll, scrollY, scrollTo, isMobile }) => {
             CONTACT
           </Category>
           <Category name="qna" onClick={scrollTo} scrollY={scrollY}>
-            QnA
+            Q&A
           </Category>
         </div>
       </NavBox>
@@ -132,7 +132,7 @@ export const WritingNav = () => {
           <LogoTitleWrite href="/">DanSun</LogoTitleWrite>
         </>
         <div>
-          <div className="writeQna">QnA</div>
+          <div className="writeQna">Q&A</div>
         </div>
       </NavWrap>
     </>

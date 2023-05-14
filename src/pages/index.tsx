@@ -80,7 +80,7 @@ const Main = ({ userValues, userName, userPw, userTitle, userContent }) => {
       </ContactTitle>
       <Contact isMobile={isMobile} />
 
-      <Title ref={(el) => (focusTarget.current[2] = el)}>QnA</Title>
+      <Title ref={(el) => (focusTarget.current[2] = el)}>Q&A</Title>
       <Qna posts={postsList} inputData={undefined} isMobile={isMobile} />
     </Article>
   );

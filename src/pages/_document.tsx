@@ -41,7 +41,7 @@ class MyDocument extends Document {
         <Head>
           <link rel="icon" href="%PUBLIC_URL%/favicon1.ico" />
           <link rel="shortcut icon" href="%PUBLIC_URL%/favicon1.ico" />
-          <title>DansunDesign</title>
+          <title>DansunHousing</title>
           <script
             type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=958e94cb44389e401dfb9507be374133"
