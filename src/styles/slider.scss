@@ -1,7 +1,6 @@
 .slider {
   padding-left: 10px;
   margin-bottom: 30px;
-  width: 100%;
   transition: all 1s;
   padding-top: 30px;
   background-color: #ebeeec;
@@ -23,27 +22,13 @@
   }
 }
 
-.slick-track {
-  //width: 1600px !important;
-}
-
-.slick-list {
-  width: 400 !important; //600
-  //margin-right: 300px !important;
-}
-
-.slick-slider,
-.slider,
-.slick-initialized {
-  width: 400 !important; //600
-  // margin-left: 100px !important;
-}
-
 .slick-slide,
 .slick-active,
 .slick-current {
-  width: 277px !important;
-  margin-right: 40px !important;
+  @media (width < 1000px) {
+    width: 290px !important;
+    margin-right: 40px !important;
+  }
 }
 
 .slick-next::after,

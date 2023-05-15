@@ -6,7 +6,7 @@ import Slider from "react-slick";
 import Image from "next/image";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { MutableRefObject, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import r1 from "../public/images/remodeling/r1.jpeg";
 import r2 from "../public/images/remodeling/r2.jpeg";
@@ -50,7 +50,8 @@ const OpenBox = ({ type }: Props) => {
     // centerPadding: "-40px", //0px은 슬라이드 끝쪽 이미지가 안잘림
     speed: 500,
     arrows: true,
-    draggable: true,
+
+    // draggable: true,
   };
 
   useEffect(() => {
@@ -82,26 +83,28 @@ const OpenBox = ({ type }: Props) => {
 
   return (
     <>
-      <Slider {...settings}>
-        {imgList?.map((e, i) => (
-          <ListWrapper key={i} onClick={() => setZoomSrc(e)}>
-            <Image
-              src={e}
-              alt=""
-              width={300}
-              height={250}
-              style={{ borderRadius: 5 }}
-            />
-            {/* <Text>{e.text}</Text> */}
-          </ListWrapper>
-        ))}
-      </Slider>
+      <div style={{ width: "100%" }}>
+        <Slider {...settings}>
+          {imgList?.map((e, i) => (
+            <ListWrapper key={i} onClick={() => setZoomSrc(e)}>
+              <ImageStyle src={e} alt="" />
+              {/* <Text>{e.text}</Text> */}
+            </ListWrapper>
+          ))}
+        </Slider>
+      </div>
       {zoomSrc !== "" && (
         <>
           <HiddenWrapper>
             <div ref={modalRef}>
-              <button onClick={() => setZoomSrc("")}>X</button>
-              <Image src={zoomSrc} alt="" style={{ objectFit: "contain" }} />
+              <button onClick={() => setZoomSrc("")} style={{ padding: "5px" }}>
+                X
+              </button>
+              <Image
+                src={zoomSrc}
+                alt=""
+                style={{ objectFit: "contain", height: "95%" }}
+              />
             </div>
           </HiddenWrapper>
         </>
@@ -113,6 +116,17 @@ const OpenBox = ({ type }: Props) => {
 const ListWrapper = styled.div`
   cursor: pointer;
   padding-bottom: 25px;
+`;
+
+const ImageStyle = styled(Image)`
+  width: 400px;
+  height: 300px;
+  border-radius: 5px;
+
+  @media (width < 1000px) {
+    width: 300px;
+    height: 250px;
+  }
 `;
 
 const HiddenWrapper = styled.div`
@@ -136,15 +150,16 @@ const HiddenWrapper = styled.div`
   button {
     position: absolute;
     right: 0;
-    width: 40px;
+    width: 45px;
     height: 40px;
     opacity: 0.7;
     text-align: center;
+    padding: 5px;
   }
 
   img {
     width: 100%;
-    height: 100%;
+
     // padding: 40px 0 40px;
   }
 `;

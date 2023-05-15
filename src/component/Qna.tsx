@@ -5,11 +5,10 @@ import { useRouter } from "next/router";
 import { Post } from "../pages";
 // import Writing from '../pages/Writing';
 type Props = {
-  isMobile: boolean;
   posts: Post[];
   inputData: any;
 };
-const Qna = ({ posts, inputData, isMobile }: Props) => {
+const Qna = ({ posts, inputData }: Props) => {
   const router = useRouter();
   const [searchValue, setSearchValue] = useState(""); //[QnA] 검색창에서 입력값을 받는 state
   const [filterValue, setFilterValue] = useState([]); //[QnA] 유효성 검사가 완료된 값을 담음

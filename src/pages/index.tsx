@@ -19,7 +19,7 @@ import Qna from "../component/Qna";
 import { useRecoilState } from "recoil";
 import { writingInfo } from "../stores/info";
 import next from "next/types";
-import { isMobile } from "react-device-detect";
+
 import img from "../public/images/배경이미지.jpeg";
 import { StaticImageData } from "next/image";
 import Image from "next/image";
@@ -66,12 +66,11 @@ const Main = ({ userValues, userName, userPw, userTitle, userContent }) => {
         handleScroll={handleScroll}
         scrollY={scrollY}
         scrollTo={scrollTo}
-        isMobile={isMobile}
       />
-      <MainImgBox isMobile={isMobile}>
-        <Img src={img} alt="" isMobile={isMobile} />
-        <Explain isMobile={isMobile}>
-          <TextBox isMobile={isMobile}>
+      <MainImgBox>
+        <Img src={img} alt="" />
+        <Explain>
+          <TextBox>
             단 하나의 선으로 시작해,
             <br />
             의미있는 공간을 만듭니다.
@@ -86,10 +85,10 @@ const Main = ({ userValues, userName, userPw, userTitle, userContent }) => {
       <ContactTitle ref={(el) => (focusTarget.current[1] = el)}>
         CONTACT
       </ContactTitle>
-      <Contact isMobile={isMobile} />
+      <Contact />
 
       <Title ref={(el) => (focusTarget.current[2] = el)}>Q&A</Title>
-      <Qna posts={postsList} inputData={undefined} isMobile={isMobile} />
+      <Qna posts={postsList} inputData={undefined} />
       <UpButton onClick={() => upHandler()}>↑</UpButton>
     </Article>
   );
@@ -104,7 +103,7 @@ const Article = styled.div`
   position: relative;
 `;
 
-const MainImgBox = styled.div<{ isMobile: boolean }>`
+const MainImgBox = styled.div`
   height: 450px;
   width: 100%;
   position: relative;
@@ -114,14 +113,14 @@ const MainImgBox = styled.div<{ isMobile: boolean }>`
   }
 `;
 
-const Img = styled(Image)<{ isMobile: boolean }>`
+const Img = styled(Image)`
   height: 100%;
   width: 100%;
   object-fit: fill;
   z-index: -1;
 `;
 
-const Explain = styled.div<{ isMobile: boolean }>`
+const Explain = styled.div`
   height: 100%;
   width: 100%;
   color: white;
@@ -133,7 +132,7 @@ const Explain = styled.div<{ isMobile: boolean }>`
   }
 `;
 
-const TextBox = styled.div<{ isMobile: boolean }>`
+const TextBox = styled.div`
   padding-left: 5%;
   font-weight: lighter;
   letter-spacing: 2px;

@@ -24,41 +24,22 @@ const PwCheck = () => {
       (e) => e.userPw === pw && e.userTitle === title && e.userName === name
     );
 
-    return pwValue.length > 0
-      ? router.push({
-          pathname: `/detail`,
-          query: { title, name },
-        })
-      : alert("비밀번호 오류");
-    // const returnValue = router.push({
-    //   pathname: `/detail`,
-    //   query: { title, name },
-    // });
-    // // return isAdmin
-    // //   ? pw === "5243"
-    // //     ? returnValue
-    // //     : alert("비밀번호 오류")
-    // //   : pwValue.length > 0
-    // //   ? returnValue
-    // //   : alert("비밀번호 오류");
-    // console.log({ isAdmin });
-    // console.log({ pw });
-    // console.log({ pwValue });
-
-    // if (isAdmin && pw === "5243") {
-    //   console.log("1");
-
-    //   return returnValue;
-    // } else if (pwValue.length > 0) {
-    //   console.log("2");
-
-    //   return returnValue;
-    // } else {
-    //   console.log("3");
-
-    //   alert("비밀번호 오류");
-    //   return;
-    // }
+    if (isAdmin && pw === "5243") {
+      router.push({
+        pathname: `/detail`,
+        query: { title, name },
+      });
+      return;
+    } else if (pwValue.length > 0) {
+      router.push({
+        pathname: `/detail`,
+        query: { title, name },
+      });
+      return;
+    } else {
+      alert("비밀번호 오류");
+      return;
+    }
   };
 
   return (
@@ -77,11 +58,11 @@ const PwCheck = () => {
           <button>확인</button>
         </PwWrapper>
       </InputForm>
-      {/* {!isAdmin && (
+      {!isAdmin && (
         <AdminText href="/detail/pwCheck" onClick={() => setIsAdmin(true)}>
           관리자 이신가요?
         </AdminText>
-      )} */}
+      )}
     </>
   );
 };

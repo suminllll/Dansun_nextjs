@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import Qna from "./Qna";
 
-export const MainNav = ({ handleScroll, scrollY, scrollTo, isMobile }) => {
+export const MainNav = ({ handleScroll, scrollY, scrollTo }) => {
   useEffect(() => {
     const watch = () => {
       window.addEventListener("scroll", handleScroll);
@@ -17,7 +16,7 @@ export const MainNav = ({ handleScroll, scrollY, scrollTo, isMobile }) => {
 
   return (
     <>
-      <NavBox scrollY={scrollY} isMobile={isMobile}>
+      <NavBox scrollY={scrollY}>
         <>
           <LogoTitle href="/" scrollY={scrollY}>
             DanSun
@@ -57,7 +56,7 @@ const Category = styled.button<{ scrollY?: any }>`
   }
 `;
 
-const NavBox = styled.nav<{ scrollY: any; isMobile: boolean }>`
+const NavBox = styled.nav<{ scrollY: any }>`
   display: flex;
   align-items: center;
   position: fixed;

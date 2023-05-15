@@ -11,34 +11,30 @@ declare global {
   }
 }
 
-type Props = {
-  isMobile: boolean;
-};
-
-const Contact = ({ isMobile }: Props) => {
+const Contact = () => {
   //지도
-  useEffect(() => {
-    // const { kakao } = window;
-    const container = document.getElementById("map");
-    const options = {
-      center: new window.kakao.maps.LatLng(
-        36.051641499339475,
-        129.371858321261
-      ), //지도의 중심좌표.
-      level: 3, //지도의 레벨(확대, 축소 정도)
-    };
-    //지도 생성
-    const map = new window.kakao.maps.Map(container, options);
+  // useEffect(() => {
+  //   // const { kakao } = window;
+  //   const container = document.getElementById("map");
+  //   const options = {
+  //     center: new window.kakao.maps.LatLng(
+  //       36.051641499339475,
+  //       129.371858321261
+  //     ), //지도의 중심좌표.
+  //     level: 3, //지도의 레벨(확대, 축소 정도)
+  //   };
+  //   //지도 생성
+  //   const map = new window.kakao.maps.Map(container, options);
 
-    const markerPosition = new window.kakao.maps.LatLng(
-      36.051641499339475,
-      129.371858321261
-    );
-    const marker = new window.kakao.maps.Marker({
-      position: markerPosition,
-    });
-    marker.setMap(map);
-  }, []);
+  //   const markerPosition = new window.kakao.maps.LatLng(
+  //     36.051641499339475,
+  //     129.371858321261
+  //   );
+  //   const marker = new window.kakao.maps.Marker({
+  //     position: markerPosition,
+  //   });
+  //   marker.setMap(map);
+  // }, []);
 
   return (
     <>
