@@ -6,15 +6,20 @@ import restaurant from "../public/images/restaurant.jpg";
 import bedMain from "../public/images/bedMain.jpg";
 import { useEffect, useRef, useState } from "react";
 import OpenBox from "./OpenBox";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Design = () => {
   const [imgOpen, setImgOpen] = useState(false);
   const [type, setType] = useState("");
-
   const [width, setWidth] = useState<number>(0);
 
   useEffect(() => {
     setWidth(window?.innerWidth);
+  }, []);
+
+  useEffect(() => {
+    AOS.init();
   }, []);
 
   const imgClickHandler = (type: string) => {
@@ -61,6 +66,8 @@ const Design = () => {
         <Remodeling
           id="remodeling"
           onClick={() => imgClickHandler("remodeling")}
+          data-aos="fade-right"
+          data-aos-delay="50"
         >
           <Img src={imgList[0][0].src} alt="" layout="fill" />
           <Text>{imgList[0][0].text}</Text>
@@ -69,12 +76,19 @@ const Design = () => {
         <Commercial
           id="commercial"
           onClick={() => imgClickHandler("commercial")}
+          data-aos="fade-left"
+          data-aos-delay="50"
         >
           <Img src={imgList[1][0].src} alt="" layout="fill" />
           <Text>{imgList[1][0]?.text}</Text>
         </Commercial>
         {imgOpen && type === "commercial" && <OpenBox type={type} />}
-        <Other id="other" onClick={() => imgClickHandler("other")}>
+        <Other
+          id="other"
+          onClick={() => imgClickHandler("other")}
+          data-aos="fade-right"
+          data-aos-delay="50"
+        >
           <Img src={imgList[2][0]?.src} alt="" layout="fill" />
           <Text>{imgList[2][0]?.text}</Text>
         </Other>
