@@ -11,26 +11,47 @@ const Design = () => {
   const [imgOpen, setImgOpen] = useState(false);
   const [type, setType] = useState("");
 
+  const [width, setWidth] = useState<number>(0);
+
+  useEffect(() => {
+    setWidth(window?.innerWidth);
+  }, []);
+
   const imgClickHandler = (type: string) => {
     setImgOpen(true);
     setType(type);
 
     switch (type) {
       case "remodeling":
-        return window.scrollTo({
-          top: 900,
-          behavior: "smooth",
-        });
+        return width > 1000
+          ? window.scrollTo({
+              top: 1000,
+              behavior: "smooth",
+            })
+          : window.scrollTo({
+              top: 900,
+              behavior: "smooth",
+            });
       case "commercial":
-        return window.scrollTo({
-          top: 1300,
-          behavior: "smooth",
-        });
+        return width > 1000
+          ? window.scrollTo({
+              top: 1600,
+              behavior: "smooth",
+            })
+          : window.scrollTo({
+              top: 1300,
+              behavior: "smooth",
+            });
       case "other":
-        return window.scrollTo({
-          top: 1650,
-          behavior: "smooth",
-        });
+        return width > 1000
+          ? window.scrollTo({
+              top: 2150,
+              behavior: "smooth",
+            })
+          : window.scrollTo({
+              top: 1650,
+              behavior: "smooth",
+            });
     }
   };
 
