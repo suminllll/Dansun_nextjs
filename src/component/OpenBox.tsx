@@ -81,7 +81,7 @@ const OpenBox = ({ type }: Props) => {
   };
 
   useEffect(() => {
-    const slider = document.getElementsByClassName("slider")[0];
+    const slider = document.getElementsByClassName("slider")[0] as HTMLElement;
     slider.style.transform = `translate3d(-${sum}px, 0px, 0px)`;
   }, [sum]);
 
