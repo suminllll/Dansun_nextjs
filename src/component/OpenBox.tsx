@@ -2,8 +2,7 @@ type Props = {
   type: string;
 };
 
-import Slider from "react-slick";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useEffect, useRef, useState } from "react";
@@ -36,10 +35,10 @@ import o6 from "../public/images/other/o6.jpeg";
 import o7 from "../public/images/other/o7.jpeg";
 
 const OpenBox = ({ type }: Props) => {
-  const [imgList, setImgList] = useState([]);
-  const [zoomSrc, setZoomSrc] = useState("");
+  const [imgList, setImgList] = useState<StaticImageData[]>([]);
+  const [zoomSrc, setZoomSrc] = useState<StaticImageData>(null);
   const modalRef = useRef<HTMLDivElement>();
-  const [sum, setSum] = useState(301);
+  const [sum, setSum] = useState<number>(301);
 
   useEffect(() => {
     switch (type) {
@@ -57,8 +56,8 @@ const OpenBox = ({ type }: Props) => {
     const handleModalBox = (e: MouseEvent) => {
       const target = e.target as Node;
 
-      if (zoomSrc !== "" && !modalRef?.current?.contains(target)) {
-        setZoomSrc("");
+      if (zoomSrc !== null && !modalRef?.current?.contains(target)) {
+        setZoomSrc(null);
       }
     };
 
@@ -118,11 +117,14 @@ const OpenBox = ({ type }: Props) => {
           {">"}
         </button>
       </SlidWrapper>
-      {zoomSrc !== "" && (
+      {zoomSrc !== null && (
         <>
           <HiddenWrapper>
             <div ref={modalRef}>
-              <button onClick={() => setZoomSrc("")} style={{ padding: "5px" }}>
+              <button
+                onClick={() => setZoomSrc(null)}
+                style={{ padding: "5px" }}
+              >
                 X
               </button>
               <Image
@@ -207,8 +209,8 @@ const HiddenWrapper = styled.div`
   }
 `;
 
-const remodelingList = [r1, r2, r3, r4, r5, r6, r7, r8];
-const commercialList = [c1, c2, c3, c4, c5, c6, c7, c8, c9];
-const otherList = [o1, o2, o7, o3, o4, o5, o6];
+const remodelingList: StaticImageData[] = [r1, r2, r3, r4, r5, r6, r7, r8];
+const commercialList: StaticImageData[] = [c1, c2, c3, c4, c5, c6, c7, c8, c9];
+const otherList: StaticImageData[] = [o1, o2, o7, o3, o4, o5, o6];
 
 export default OpenBox;

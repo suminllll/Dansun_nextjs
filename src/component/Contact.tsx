@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-no-undef */
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import kakaoIcon from "../public/images/카카오톡.png";
 import Image from "next/image";
@@ -119,23 +118,5 @@ const TEXTLIST = [
     id: 3,
     title: "Address",
     text: "경북 포항시 북구 삼호로 125, 2층",
-  },
-];
-
-const INPUTTITLE = [
-  {
-    id: 1,
-    title: "Name",
-    name: "nameValue",
-  },
-  {
-    id: 2,
-    title: "Phone Number",
-    name: "numberValue",
-  },
-  {
-    id: 3,
-    title: "Content",
-    name: "contentValue",
   },
 ];

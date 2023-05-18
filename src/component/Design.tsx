@@ -1,21 +1,20 @@
 import styled from "styled-components";
 import Image from "next/image";
-
 import office from "../public/images/office.jpg";
 import restaurant from "../public/images/restaurant.jpg";
 import bedMain from "../public/images/bedMain.jpg";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import OpenBox from "./OpenBox";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 const Design = () => {
-  const [imgOpen, setImgOpen] = useState(false);
-  const [type, setType] = useState("");
+  const [imgOpen, setImgOpen] = useState<boolean>(false);
+  const [type, setType] = useState<string>("");
   const [width, setWidth] = useState<number>(0);
 
   useEffect(() => {
-    setWidth(window?.innerWidth);
+    setWidth(window.innerWidth);
   }, []);
 
   useEffect(() => {

@@ -4,38 +4,27 @@ export type Post = {
   userPw: string;
   userTitle: string;
 };
-import React, {
-  useRef,
-  useState,
-  useEffect,
-  useContext,
-  useLayoutEffect,
-} from "react";
+
+import React, { useRef, useState, useLayoutEffect } from "react";
 import styled from "styled-components";
 import { MainNav } from "../component/Nav";
 import Design from "../component/Design";
 import Contact from "../component/Contact";
 import Qna from "../component/Qna";
-import { useRecoilState } from "recoil";
-import { writingInfo } from "../stores/info";
-import next from "next/types";
-
 import img from "../public/images/배경이미지.jpeg";
-import { StaticImageData } from "next/image";
 import Image from "next/image";
 
-const Main = ({ userValues, userName, userPw, userTitle, userContent }) => {
-  const [scrollY, setScrollY] = useState(0); //[nav] 색깔을 바꿔주는 state
+const Main = () => {
+  const [scrollY, setScrollY] = useState<number>(0); //[nav] 색깔을 바꿔주는 state
   const [postsList, setPostsList] = useState<Post[]>([]);
-
-  const focusTarget = useRef([]); //[nav] 해당 카테고리로 이동할때 사용
+  const focusTarget = useRef<any[]>([]); //[nav] 해당 카테고리로 이동할때 사용
 
   //[nav] 색깔 바꾸는 로직
   const handleScroll = () => {
     setScrollY(window.pageYOffset);
   };
   //[nav] 카테고리를 클릭하면 해당 카테고리 위치로 내려감
-  const scrollTo = (e) => {
+  const scrollTo = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
 
     const category = {
@@ -43,12 +32,12 @@ const Main = ({ userValues, userName, userPw, userTitle, userContent }) => {
       contact: 1,
       qna: 2,
     };
+
     focusTarget.current[category[name]].scrollIntoView({ behavior: "smooth" });
   };
 
   useLayoutEffect(() => {
     let data = JSON.parse(window.localStorage.getItem("userName"));
-
     setPostsList(data);
   }, []);
 
@@ -60,12 +49,13 @@ const Main = ({ userValues, userName, userPw, userTitle, userContent }) => {
   const downHandler = () => {
     focusTarget.current[2].scrollIntoView();
   };
+
   return (
     <Article>
       <MainNav
-        handleScroll={handleScroll}
+        handleScroll={() => handleScroll()}
         scrollY={scrollY}
-        scrollTo={scrollTo}
+        scrollTo={(e) => scrollTo(e)}
       />
       <MainImgBox>
         <Img src={img} alt="" />

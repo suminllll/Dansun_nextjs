@@ -1,10 +1,15 @@
+type Props = {
+  text: string;
+  onClick: () => void;
+};
+
 import React from "react";
 import styled from "styled-components";
 
-export const OneButton = ({ text, handleWrite, userName }) => {
+export const OneButton = ({ text, onClick }: Props) => {
   return (
     <ButtonBox>
-      <Button onClick={() => handleWrite({ state: userName })}>{text}</Button>
+      <Button onClick={() => onClick()}>{text}</Button>
     </ButtonBox>
   );
 };
@@ -26,12 +31,19 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+type TwoButtonProps = {
+  cancelText: string;
+  PushText: string;
+  handleCancel: () => void;
+  handlePush: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+};
+
 export const TwoButton = ({
   cancelText,
   PushText,
   handleCancel,
   handlePush,
-}) => {
+}: TwoButtonProps) => {
   return (
     <ButtonBox>
       <Button style={{ marginRight: "20px" }} onClick={handleCancel}>

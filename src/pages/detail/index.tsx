@@ -4,7 +4,7 @@ type QnaType = {
   userContent: string;
   userPw?: string;
 };
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { WritingNav } from "../../component/Nav";

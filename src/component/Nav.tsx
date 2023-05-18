@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from "react";
+type Props = {
+  handleScroll: () => void;
+  scrollY: number;
+  scrollTo: (e) => void;
+};
+
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 
-export const MainNav = ({ handleScroll, scrollY, scrollTo }) => {
+export const MainNav = ({ handleScroll, scrollY, scrollTo }: Props) => {
   useEffect(() => {
     const watch = () => {
       window.addEventListener("scroll", handleScroll);
@@ -26,10 +32,14 @@ export const MainNav = ({ handleScroll, scrollY, scrollTo }) => {
           <Category name="design" onClick={scrollTo} scrollY={scrollY}>
             DESIGN
           </Category>
-          <Category name="contact" onClick={scrollTo} scrollY={scrollY}>
+          <Category
+            name="contact"
+            onClick={(e) => scrollTo(e)}
+            scrollY={scrollY}
+          >
             CONTACT
           </Category>
-          <Category name="qna" onClick={scrollTo} scrollY={scrollY}>
+          <Category name="qna" onClick={(e) => scrollTo(e)} scrollY={scrollY}>
             Q&A
           </Category>
         </div>

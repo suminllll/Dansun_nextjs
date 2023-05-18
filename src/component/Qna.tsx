@@ -140,7 +140,7 @@ const Qna = ({ posts, inputData }: Props) => {
             })} */}
         </tbody>
       </Table>
-      <OneButton text="글쓰기" handleWrite={handleWrite} userName={undefined} />
+      <OneButton text="글쓰기" onClick={() => handleWrite()} />
     </QnaBox>
   );
 };

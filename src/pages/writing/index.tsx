@@ -46,7 +46,7 @@ const Writing = () => {
   //TODO: 새로고침시 나가겠냐는 알림창 띄우기
 
   //게시 버튼을 누르면 데이터가 로컬스토리지에 저장됨
-  const handlePush = (e) => {
+  const handlePush = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     if (
       userName !== "" &&
@@ -70,8 +70,6 @@ const Writing = () => {
     }
     return alert("입력칸을 모두 채워주세요.");
   };
-
-  // localStorage.removeItem('dataName');
 
   return (
     <>
@@ -125,7 +123,6 @@ const Writing = () => {
           <TwoButton
             handleCancel={() => handleCancel()}
             handlePush={(e) => handlePush(e)}
-            // userName={userName}
             cancelText="취소"
             PushText="게시"
           />

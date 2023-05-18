@@ -1,21 +1,21 @@
 import styled from "styled-components";
 import { WritingNav } from "../../component/Nav";
-import React, { SetStateAction, useLayoutEffect, useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
 const PwCheck = () => {
-  const [pw, setPw] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [pw, setPw] = useState<string>("");
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const router = useRouter();
   const title = router.query.title;
   const name = router.query.name;
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPw(e.target.value);
   };
 
-  const pwCheckHandler = (e: any) => {
+  const pwCheckHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     let data = JSON.parse(window.localStorage.getItem("userName"));
@@ -46,7 +46,7 @@ const PwCheck = () => {
     <>
       <WritingNav />
       <InputForm>
-        <PwWrapper onSubmit={pwCheckHandler}>
+        <PwWrapper onSubmit={(e) => pwCheckHandler(e)}>
           <div>
             <p> 패스워드를 입력하세요.</p>
             <input
