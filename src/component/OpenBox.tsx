@@ -39,20 +39,7 @@ const OpenBox = ({ type }: Props) => {
   const [imgList, setImgList] = useState([]);
   const [zoomSrc, setZoomSrc] = useState("");
   const modalRef = useRef<HTMLDivElement>();
-
-  const settings = {
-    dots: false, //슬라이드 밑에 점 보이게
-    infinite: false, //무한으로 반복
-    slidesToShow: 2, //n장씩 보이게
-    slidesToScroll: 1, //n장씩 스크롤
-    className: "slider",
-    // centerMode: true,
-    // centerPadding: "-40px", //0px은 슬라이드 끝쪽 이미지가 안잘림
-    speed: 500,
-    arrows: true,
-
-    // draggable: true,
-  };
+  const [sum, setSum] = useState(301);
 
   useEffect(() => {
     switch (type) {
@@ -81,18 +68,56 @@ const OpenBox = ({ type }: Props) => {
     };
   }, [zoomSrc]);
 
+  const slideHandler = (type: string) => {
+    if (type === "next" && sum < imgList.length * 300) {
+      setSum(() => sum + 300);
+    } else if (type === "prev" && sum > 300) {
+      setSum(() => sum - 300);
+    } else if (sum === 1) {
+      setSum(0);
+    } else {
+      return;
+    }
+  };
+
+  useEffect(() => {
+    const slider = document.getElementsByClassName("slider")[0];
+    slider.style.transform = `translate3d(-${sum}px, 0px, 0px)`;
+  }, [sum]);
+
   return (
     <>
-      <div style={{ width: "100%" }}>
-        <Slider {...settings}>
+      <SlidWrapper>
+        <button
+          onClick={() => slideHandler("prev")}
+          style={{
+            position: "absolute",
+            left: 0,
+            zIndex: 1,
+          }}
+        >
+          {"<"}
+        </button>
+        <div
+          className="slider"
+          style={{ display: "flex", transition: "all 1s ease 0s" }}
+        >
           {imgList?.map((e, i) => (
             <ListWrapper key={i} onClick={() => setZoomSrc(e)}>
               <ImageStyle src={e} alt="" />
-              {/* <Text>{e.text}</Text> */}
             </ListWrapper>
           ))}
-        </Slider>
-      </div>
+        </div>
+        <button
+          onClick={() => slideHandler("next")}
+          style={{
+            position: "absolute",
+            right: 0,
+          }}
+        >
+          {">"}
+        </button>
+      </SlidWrapper>
       {zoomSrc !== "" && (
         <>
           <HiddenWrapper>
@@ -112,10 +137,28 @@ const OpenBox = ({ type }: Props) => {
     </>
   );
 };
+const SlidWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  padding: 30px 0;
+  background-color: #ebeeec;
+
+  button {
+    width: 45px;
+    height: 300px;
+    opacity: 0.7;
+    text-align: center;
+    padding: 5px;
+  }
+`;
 
 const ListWrapper = styled.div`
   cursor: pointer;
-  padding-bottom: 25px;
+  margin-right: 20px;
+  transform: all 2s;
 `;
 
 const ImageStyle = styled(Image)`

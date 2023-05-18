@@ -2,7 +2,6 @@ import "../styles/globals.css";
 import { ThemeProvider } from "styled-components";
 import "../styles/globals.css";
 import { theme } from "../styles/theme";
-import "../styles/slider.scss";
 
 import {
   RecoilRoot,
