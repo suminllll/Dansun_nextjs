@@ -9,8 +9,6 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 const Design = () => {
-  const [imgOpen, setImgOpen] = useState<boolean>(false);
-  const [type, setType] = useState<string>("");
   const [width, setWidth] = useState<number>(0);
 
   useEffect(() => {
@@ -22,9 +20,6 @@ const Design = () => {
   }, []);
 
   const imgClickHandler = (type: string) => {
-    setImgOpen(true);
-    setType(type);
-
     switch (type) {
       case "remodeling":
         return width > 1000
@@ -62,36 +57,21 @@ const Design = () => {
   return (
     <>
       <ImgBox>
-        <Remodeling
-          id="remodeling"
-          onClick={() => imgClickHandler("remodeling")}
-          data-aos="fade-right"
-          data-aos-delay="50"
-        >
+        <Remodeling id="remodeling" data-aos="fade-right" data-aos-delay="50">
           <Img src={imgList[0][0].src} alt="" layout="fill" />
           <Text>{imgList[0][0].text}</Text>
         </Remodeling>
-        {imgOpen && type === "remodeling" && <OpenBox type={type} />}
-        <Commercial
-          id="commercial"
-          onClick={() => imgClickHandler("commercial")}
-          data-aos="fade-left"
-          data-aos-delay="50"
-        >
+        <OpenBox type={"remodeling"} />
+        <Commercial id="commercial" data-aos="fade-left" data-aos-delay="50">
           <Img src={imgList[1][0].src} alt="" layout="fill" />
           <Text>{imgList[1][0]?.text}</Text>
         </Commercial>
-        {imgOpen && type === "commercial" && <OpenBox type={type} />}
-        <Other
-          id="other"
-          onClick={() => imgClickHandler("other")}
-          data-aos="fade-right"
-          data-aos-delay="50"
-        >
+        <OpenBox type={"commercial"} />
+        <Other id="other" data-aos="fade-right" data-aos-delay="50">
           <Img src={imgList[2][0]?.src} alt="" layout="fill" />
           <Text>{imgList[2][0]?.text}</Text>
         </Other>
-        {imgOpen && type === "other" && <OpenBox type={type} />}
+        <OpenBox type={"other"} />
       </ImgBox>
     </>
   );

@@ -7,6 +7,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 import r1 from "../public/images/remodeling/r1.jpeg";
 import r2 from "../public/images/remodeling/r2.jpeg";
 import r3 from "../public/images/remodeling/r3.jpeg";
@@ -39,6 +42,10 @@ const OpenBox = ({ type }: Props) => {
   const [zoomSrc, setZoomSrc] = useState<StaticImageData>(null);
   const modalRef = useRef<HTMLDivElement>();
   const [sum, setSum] = useState<number>(301);
+
+  useEffect(() => {
+    AOS.init();
+  }, [type]);
 
   useEffect(() => {
     switch (type) {
@@ -80,13 +87,14 @@ const OpenBox = ({ type }: Props) => {
   };
 
   useEffect(() => {
-    const slider = document.getElementsByClassName("slider")[0] as HTMLElement;
+    const slider = document.getElementsByClassName(`${type}`)[0] as HTMLElement;
+
     slider.style.transform = `translate3d(-${sum}px, 0px, 0px)`;
   }, [sum]);
 
   return (
     <>
-      <SlidWrapper>
+      <SlidWrapper data-aos="fade-up">
         <button
           onClick={() => slideHandler("prev")}
           style={{
@@ -98,7 +106,7 @@ const OpenBox = ({ type }: Props) => {
           {"<"}
         </button>
         <div
-          className="slider"
+          className={`slider ${type}`}
           style={{ display: "flex", transition: "all 1s ease 0s" }}
         >
           {imgList?.map((e, i) => (
